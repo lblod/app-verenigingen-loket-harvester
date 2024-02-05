@@ -1,0 +1,19 @@
+# just a reminder on how to rerun a task. !!! ONLY LOCALLY
+drc exec harvest_gen_delta  curl --location --request POST 'localhost/delta' \
+--header 'Content-Type: application/vnd.api+json' \
+--data-raw '    [
+      {
+          "deletes": [],
+          "inserts": [
+              {
+                  "subject": { "type": "uri", "value": "http://redpencil.data.gift/id/task/5e2f11a0-95e0-11ee-9ce8-85f724782cfc" },
+                  "predicate": { "type": "uri", "value": "http://www.w3.org/ns/adms#status" },
+                  "object": { "type": "uri", "value": "http://redpencil.data.gift/id/concept/JobStatus/scheduled" }
+              },
+              {
+                  "subject": { "type": "uri", "value": "http://data.lblod.info/id/functionarissen/5E7B4103A3ACB60008000223" },
+                  "predicate": { "type": "uri", "value": "http://data.vlaanderen.be/ns/mandaat#isBestuurlijkeAliasVan" },
+                  "object": { "type": "uri", "value": "http://data.lblod.info/id/personen/5E7B3F3AA3ACB60008000222" }
+              }
+          ]
+      }

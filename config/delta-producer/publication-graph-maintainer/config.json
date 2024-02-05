@@ -1,0 +1,25 @@
+{
+  "besluiten": {
+    "deltaInterval": 10000,
+    "deltaPath": "/besluiten/delta",
+    "errorCreatorUri": "http://lblod.data.gift/services/delta-producer-publication-graph-maintainer-besluiten",
+    "errorGraph": "http://mu.semte.ch/graphs/harvesting",
+    "exportConfigPath": "/config/besluiten/export.json",
+    "filesGraph": "http://mu.semte.ch/graphs/harvesting",
+    "filesPath": "/besluiten/files",
+    "healingJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/healingOperation/besluiten",
+    "initialPublicationGraphSyncJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/besluiten",
+    "jobsGraph": "http://mu.semte.ch/graphs/harvesting",
+    "loginPath": "/besluiten/login",
+    "publicationGraph": "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer",
+    "publisherUri": "http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten",
+    "queuePollInterval": 3000,
+    "relativeFilePath": "deltas/besluiten",
+    "serveDeltaFiles": true,
+    "skipMuAuthInitialSync": true,
+    "skipMuAuthHealing": true,
+    "useFileDiff": true,
+    "healingInitialBatchSizeInsert": 1000,
+    "useVirtuosoForExpensiveSelects": true
+  }
+}

@@ -1,0 +1,333 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#Rechtsgrond(Besluit)Shape> a sh:NodeShape ;
+    sh:targetClass <http://data.europa.eu/eli/ontology#LegalResource> ;
+    sh:property [ sh:name "heeftDeel" ; sh:description "Duidt een artikel aan van dit besluit." ; sh:path <http://data.europa.eu/eli/ontology#has_part> ; sh:class <http://data.europa.eu/eli/ontology#LegalResourceSubdivision> ; sh:minCount 1 ] ;
+    sh:property [ sh:name "aangenomenDoor" ; sh:description "Het orgaan dat de rechtsgrond heeft goedgekeurd, waardoor er een rechtsgevolg ontstond." ; sh:path <http://data.europa.eu/eli/ontology#passed_by> ; sh:class <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#Rechtsgrondonderdeel(Artikel)Shape> a sh:NodeShape ;
+    sh:targetClass <http://data.europa.eu/eli/ontology#LegalResourceSubdivision> ;
+    sh:property [ sh:name "isDeelVan" ; sh:description "Het besluit waar dit artikel onderdeel van is." ; sh:path <http://data.europa.eu/eli/ontology#is_part_of> ; sh:class <http://data.europa.eu/eli/ontology#LegalResource> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#LegaleVerschijningsvormShape> a sh:NodeShape ;
+    sh:targetClass <http://data.europa.eu/eli/ontology#LegalExpression> ;
+    sh:property [ sh:name "veranderdDoor" ; sh:description "Duidt aan dat deze legale verschijningsvorm een verandering met legale gevolgen heeft ondergaan door een andere legale verschijningsvorm. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering." ; sh:path <http://data.europa.eu/eli/ontology#changed_by> ; sh:class <http://data.europa.eu/eli/ontology#LegalExpression> ] ;
+    sh:property [ sh:name "citeert" ; sh:description "Een citatie in de wettelijke tekst. Dit omvat zowel woordelijke citaten als citaten in verwijzingen." ; sh:path <http://data.europa.eu/eli/ontology#cites> ; sh:class <http://data.europa.eu/eli/ontology#LegalExpression> ] ;
+    sh:property [ sh:name "gecorrigeerdDoor" ; sh:description "Duidt een legale verschijningsvorm aan die een tekstuele verandering zonder legale impact aan deze legale verschijningsvorm aanbrengt." ; sh:path <http://data.europa.eu/eli/ontology#corrected_by> ; sh:class <http://data.europa.eu/eli/ontology#LegalExpression> ] ;
+    sh:property [ sh:name "verandert" ; sh:description "Duidt aan dat deze legale verschijningsvorm een verandering met legale gevolgen doorvoert op een andere legale verschijningsvorm. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering." ; sh:path <http://data.europa.eu/eli/ontology#changes> ; sh:class <http://data.europa.eu/eli/ontology#LegalExpression> ] ;
+    sh:property [ sh:name "corrigeert" ; sh:description "Duidt aan dat deze legale verschijningsvorm tekstuele veranderingen zonder legale impact aanbrengt in een andere legale verschijningsvorm." ; sh:path <http://data.europa.eu/eli/ontology#corrects> ; sh:class <http://data.europa.eu/eli/ontology#LegalExpression> ] ;
+    sh:property [ sh:name "inhoud" ; sh:description "De beschrijving van de beoogde rechtsgevolgen, het zogenaamde beschikkend gedeelte." ; sh:path <http://www.w3.org/ns/prov#value> ; sh:nodeKind sh:Literal ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "taal" ; sh:description "De taal van de verschijningsvorm." ; sh:path <http://data.europa.eu/eli/ontology#language> ; sh:class <http://www.w3.org/2004/02/skos/core#Concept> ; sh:minCount 1 ; sh:maxCount 1 ; qb:codeList <http://publications.europa.eu/mdr/authority/language/index.html> ] ;
+    sh:property [ sh:name "titel" ; sh:description "Titel van de legale verschijningsvorm." ; sh:path <http://data.europa.eu/eli/ontology#title> ; sh:or ( [ sh:datatype <http://www.w3.org/2001/XMLSchema#string> ] [ sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ] ) ; sh:minCount 1 ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#DocumentOnderdeelShape> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel> ;
+    sh:property [ sh:name "isOnderdeelVan" ; sh:description "Een verwante bron waarin de beschreven bron fysiek of logisch is opgenomen." ; sh:path <http://purl.org/dc/terms/isPartOf> ; sh:class <http://xmlns.com/foaf/0.1/Document> ] ;
+    sh:property [ sh:name "isDeelVan" ; sh:description "Een verwante bron waarin de beschreven bron fysiek of logisch is opgenomen." ; sh:path <http://purl.org/dc/terms/isPartOf> ; sh:class <https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel> ] ;
+    sh:property [ sh:name "nummer" ; sh:description "Nummer vh documentonderdeel." ; sh:path <https://data.vlaanderen.be/ns/generiek#nummer> ; sh:datatype <http://www.w3.org/2001/XMLSchema#integer> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "type" ; sh:description "Aard van het documentonderdeel." ; sh:path <http://purl.org/dc/terms/type> ; sh:class <http://www.w3.org/2004/02/skos/core#Concept> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#AgentShape> a sh:NodeShape ;
+    sh:targetClass <http://purl.org/dc/terms/Agent> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#BestuurseenheidShape> a sh:NodeShape ;
+    sh:targetClass <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid> ;
+    sh:property [ sh:name "classificatie" ; sh:description "Classificatie van de bestuurseenheid." ; sh:path <http://www.w3.org/ns/org#classification> ; sh:class <http://www.w3.org/2004/02/skos/core#Concept> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "naam" ; sh:description "Naam van de bestuurseenheid." ; sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ; sh:nodeKind sh:Literal ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "werkingsgebied" ; sh:description "Geografische gebied waarbinnen de bestuurseenheid bepaalde verantwoordelijkheden heeft waarbinnen het bestuurshandelingen kan stellen." ; sh:path <http://data.vlaanderen.be/ns/besluit#werkingsgebied> ; sh:class <http://www.w3.org/ns/prov#Location> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#RechtsgrondonderdeelShape> a sh:NodeShape ;
+    sh:targetClass <http://data.europa.eu/eli/ontology#LegalResourceSubdivision> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#RechtsgrondShape> a sh:NodeShape ;
+    sh:targetClass <http://data.europa.eu/eli/ontology#LegalResource> ;
+    sh:property [ sh:name "gecorrigeerdDoor" ; sh:description "Duidt een rechtsgrond aan die een tekstuele verandering zonder legale impact aan deze rechtsgrond aanbrengt." ; sh:path <http://data.europa.eu/eli/ontology#corrected_by> ; sh:class <http://data.europa.eu/eli/ontology#LegalResource> ] ;
+    sh:property [ sh:name "verandert" ; sh:description "Duidt aan dat deze rechtsgrond een verandering met legale gevolgen doorvoert op een andere rechtsgrond. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering." ; sh:path <http://data.europa.eu/eli/ontology#changes> ; sh:class <http://data.europa.eu/eli/ontology#LegalResource> ] ;
+    sh:property [ sh:name "veranderdDoor" ; sh:description "Duidt aan dat deze rechtsgrond een verandering met legale gevolgen heeft ondergaan door een andere rechtsgrond. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering." ; sh:path <http://data.europa.eu/eli/ontology#changed_by> ; sh:class <http://data.europa.eu/eli/ontology#LegalResource> ] ;
+    sh:property [ sh:name "citeert" ; sh:description "Een citatie in de wettelijke tekst. Dit omvat zowel woordelijke citaten als citaten in verwijzingen." ; sh:path <http://data.europa.eu/eli/ontology#cites> ; sh:class <http://data.europa.eu/eli/ontology#LegalResource> ] ;
+    sh:property [ sh:name "corrigeert" ; sh:description "Duidt aan dat deze rechtsgrond tekstuele veranderingen zonder legale impact aanbrengt in een andere rechtsgrond." ; sh:path <http://data.europa.eu/eli/ontology#corrects> ; sh:class <http://data.europa.eu/eli/ontology#LegalResource> ] ;
+    sh:property [ sh:name "heeft bijlage" ; sh:description "Een bijlage waarnaar verwezen wordt." ; sh:path <http://data.europa.eu/eli/ontology#cites> ; sh:class <http://xmlns.com/foaf/0.1/Document> ] ;
+    sh:property [ sh:name "buitenwerkingtreding" ; sh:description "De laatste dag waarop de regelgeving nog van kracht is." ; sh:path <http://data.europa.eu/eli/ontology#date_no_longer_in_force> ; sh:datatype <http://www.w3.org/2001/XMLSchema#date> ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "inwerkingtreding" ; sh:description "De datum waarop de regelgeving van kracht wordt." ; sh:path <http://data.europa.eu/eli/ontology#first_date_entry_in_force> ; sh:datatype <http://www.w3.org/2001/XMLSchema#date> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "typeDocument" ; sh:description "Het type van de rechtsgrond." ; sh:path <http://data.europa.eu/eli/ontology#type_document> ; sh:class <http://data.europa.eu/eli/ontology#ResourceType> ; sh:minCount 1 ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#VergaderactiviteitShape> a sh:NodeShape ;
+    sh:targetClass <http://data.vlaanderen.be/ns/besluit#Vergaderactiviteit> ;
+    sh:property [ sh:name "heeftAanwezige" ; sh:description "Een agent (bvb: mandataris) die aanwezig was tijdens (een deel van) de activiteit waar hij een zekere verantwoordelijkheid had." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftAanwezige> ; sh:class <http://purl.org/dc/terms/Agent> ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#BehandelingVanAgendapuntShape> a sh:NodeShape ;
+    sh:targetClass <http://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt> ;
+    sh:property [ sh:name "heeftAanwezige" ; sh:description "Een mandataris (van het orgaan dat de zitting houdt) die aanwezig was tijdens (een deel van) de behandeling." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftAanwezige> ; sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ; sh:minCount 1 ] ;
+    sh:property [ sh:name "heeftOnderwerp" ; sh:description "Het onderwerp van de activiteit." ; sh:path <http://purl.org/dc/terms/subject> ; sh:class <http://data.vlaanderen.be/ns/besluit#Agendapunt> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "gebeurtNa" ; sh:description "Verwijzing naar het voorgaand behandeld agendapunt binnen dezelfde zitting. Laat toe om de volgorde van de behandelingen op te bouwen." ; sh:path <http://data.vlaanderen.be/ns/besluit#gebeurtNa> ; sh:class <http://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt> ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "geeftAanleidingTot" ; sh:description "Een besluit dat is opgemaakt naar aanleiding van de behandeling van het agendapunt." ; sh:path <http://www.w3.org/ns/prov#generated> ; sh:class <http://data.vlaanderen.be/ns/besluit#Besluit> ] ;
+    sh:property [ sh:name "heeftVoorzitter" ; sh:description "De mandataris die de rol als voorzitter heeft gedurende de behandeling van het agendapunt." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftVoorzitter> ; sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "heeftStemming" ; sh:description "Een stemming die plaatsvond tijdens de behandeling van het agendapunt." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftStemming> ; sh:class <http://data.vlaanderen.be/ns/besluit#Stemming> ] ;
+    sh:property [ sh:name "heeftSecretaris" ; sh:description "De mandataris die de rol van secretaris heeft gedurende de behandeling van het agendapunt." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftSecretaris> ; sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "openbaar" ; sh:description "Geeft aan of de bespreking effectief openbaar verlopen is." ; sh:path <http://data.vlaanderen.be/ns/besluit#openbaar> ; sh:datatype <http://www.w3.org/2001/XMLSchema#boolean> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#DocumentShape> a sh:NodeShape ;
+    sh:targetClass <http://xmlns.com/foaf/0.1/Document> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#BestuursorgaanShape> a sh:NodeShape ;
+    sh:targetClass <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> ;
+    sh:property [ sh:name "bestuurt" ; sh:description "De bestuurseenheid die door het orgaan bestuurd wordt." ; sh:path <http://data.vlaanderen.be/ns/besluit#bestuurt> ; sh:class <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "classificatie" ; sh:description "Het type bestuursorgaan." ; sh:path <http://www.w3.org/ns/org#classification> ; sh:class <http://www.w3.org/2004/02/skos/core#Concept> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "naam" ; sh:description "Naam van de eenheid." ; sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ; sh:nodeKind sh:Literal ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#AgendapuntShape> a sh:NodeShape ;
+    sh:targetClass <http://data.vlaanderen.be/ns/besluit#Agendapunt> ;
+    sh:property [ sh:name "aangebrachtNa" ; sh:description "Het agendapunt dat op de agenda direct dit agendapunt voorafging." ; sh:path <http://data.vlaanderen.be/ns/besluit#aangebrachtNa> ; sh:class <http://data.vlaanderen.be/ns/besluit#Agendapunt> ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "heeftOntwerpbesluit" ; sh:description "Een (mogelijks nog aan te vullen of aan te passen) ontwerp voor het besluit dat uit dit agendapunt zou voortkomen." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftOntwerpbesluit> ; sh:class <http://xmlns.com/foaf/0.1/Document> ] ;
+    sh:property [ sh:name "refereertAan" ; sh:description "Een ander agendapunt waarnaar verwezen wordt vanuit dit agendapunt." ; sh:path <http://purl.org/dc/terms/references> ; sh:class <http://data.vlaanderen.be/ns/besluit#Agendapunt> ] ;
+    sh:property [ sh:name "beschrijving" ; sh:description "Korte beschrijving van het agendapunt." ; sh:path <http://purl.org/dc/terms/description> ; sh:or ( [ sh:datatype <http://www.w3.org/2001/XMLSchema#string> ] [ sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ] ) ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "geplandOpenbaar" ; sh:description "Geeft aan of het agendapunt al dan niet bedoeld is om openbaar te bespreken." ; sh:path <http://data.vlaanderen.be/ns/besluit#geplandOpenbaar> ; sh:datatype <http://www.w3.org/2001/XMLSchema#boolean> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "titel" ; sh:description "De naam van het agendapunt." ; sh:path <http://purl.org/dc/terms/title> ; sh:or ( [ sh:datatype <http://www.w3.org/2001/XMLSchema#string> ] [ sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ] ) ; sh:minCount 1 ] ;
+    sh:property [ sh:name "type" ; sh:description "Type van het agendapunt." ; sh:path <http://data.vlaanderen.be/ns/besluit#Agendapunt.type> ; sh:class <http://www.w3.org/2004/02/skos/core#Concept> ; sh:minCount 1 ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#MandatarisShape> a sh:NodeShape ;
+    sh:targetClass <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#ZittingShape> a sh:NodeShape ;
+    sh:targetClass <http://data.vlaanderen.be/ns/besluit#Zitting> ;
+    sh:property [ sh:name "heeftAanwezigeBijStart" ; sh:description "Een mandataris (van het bestuursorsgaan die de zitting hield) die aanwezig was bij de start van de zitting." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftAanwezigeBijStart> ; sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ; sh:minCount 1 ] ;
+    sh:property [ sh:name "heeftVoorzitter" ; sh:description "De mandataris die de rol als voorzitter heeft gedurende de zitting." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftVoorzitter> ; sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "heeftZittingsverslag" ; sh:description "Een verslag van de zitting." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftZittingsverslag> ; sh:class <http://xmlns.com/foaf/0.1/Document> ] ;
+    sh:property [ sh:name "heeftSecretaris" ; sh:description "De mandataris die de rol van secretaris heeft gedurende de zitting." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftSecretaris> ; sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "heeftNotulen" ; sh:description "De formele notulen van de zitting." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftNotulen> ; sh:class <http://xmlns.com/foaf/0.1/Document> ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "behandelt" ; sh:description "Een formeel vastgelegd agendapunt van de zitting." ; sh:path <http://data.vlaanderen.be/ns/besluit#behandelt> ; sh:class <http://data.vlaanderen.be/ns/besluit#Agendapunt> ; sh:minCount 1 ] ;
+    sh:property [ sh:name "isGehoudenDoor" ; sh:description "Duidt aan door welk orgaan de zitting is gehouden." ; sh:path <http://data.vlaanderen.be/ns/besluit#isGehoudenDoor> ; sh:class <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "eind" ; sh:description "Tijdstip waarop de zitting eindigt." ; sh:path <http://www.w3.org/ns/prov#endedAtTime> ; sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "geplandeStart" ; sh:description "Het tijdstip waarop de zitting gepland is om te beginnen." ; sh:path <http://data.vlaanderen.be/ns/besluit#geplandeStart> ; sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "locatie" ; sh:description "Locatie waar de zitting plaatsvindt. Doorgaans is dit een zaal in een gebouw." ; sh:path <http://www.w3.org/ns/prov#atLocation> ; sh:class <http://www.w3.org/ns/prov#Location> ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "start" ; sh:description "Tijdstip waarop de zitting begint." ; sh:path <http://www.w3.org/ns/prov#startedAtTime> ; sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#StemmingShape> a sh:NodeShape ;
+    sh:targetClass <http://data.vlaanderen.be/ns/besluit#Stemming> ;
+    sh:property [ sh:name "heeftOnthouder" ; sh:description "Een mandataris die als onthouder heeft gestemd op het onderwerp van de stemming." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftOnthouder> ; sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ] ;
+    sh:property [ sh:name "heeftaanwezige" ; sh:description "Een mandataris (van het orgaan dat de zitting houdt) die aanwezig was tijdens de stemming." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftAanwezige> ; sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ; sh:minCount 1 ] ;
+    sh:property [ sh:name "heeftStemmer" ; sh:description "Een mandataris die deelneemt aan de stemming." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftStemmer> ; sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ; sh:minCount 1 ] ;
+    sh:property [ sh:name "heeftTegenstander" ; sh:description "Een mandataris die als tegenstander heeft gestemd op het onderwerp van de stemming." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftTegenstander> ; sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ] ;
+    sh:property [ sh:name "heeftVoorstander" ; sh:description "Een mandataris die als voorstander heeft gestemd op het onderwerp van de stemming." ; sh:path <http://data.vlaanderen.be/ns/besluit#heeftVoorstander> ; sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ] ;
+    sh:property [ sh:name "aantalOnthouders" ; sh:description "Het aantal stemmers dat als onthouding heeft gestemd." ; sh:path <http://data.vlaanderen.be/ns/besluit#aantalOnthouders> ; sh:datatype <http://www.w3.org/2001/XMLSchema#integer> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "aantalTegenstanders" ; sh:description "Het aantal stemmers dat als tegenstander heeft gestemd." ; sh:path <http://data.vlaanderen.be/ns/besluit#aantalTegenstanders> ; sh:datatype <http://www.w3.org/2001/XMLSchema#integer> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "aantalVoorstanders" ; sh:description "Het aantal stemmers dat als voorstander heeft gestemd." ; sh:path <http://data.vlaanderen.be/ns/besluit#aantalVoorstanders> ; sh:datatype <http://www.w3.org/2001/XMLSchema#integer> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "geheim" ; sh:description "Geeft aan of de stemming geheim was. Bij een geheime stemming wordt niet individueel bekend gemaakt wie op wat heeft gestemd." ; sh:path <http://data.vlaanderen.be/ns/besluit#geheim> ; sh:datatype <http://www.w3.org/2001/XMLSchema#boolean> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "gevolg" ; sh:description "Het gevolg van de stemming." ; sh:path <http://data.vlaanderen.be/ns/besluit#gevolg> ; sh:or ( [ sh:datatype <http://www.w3.org/2001/XMLSchema#string> ] [ sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ] ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "onderwerp" ; sh:description "De beschrijving van het onderwerp waarover de stemming gaat." ; sh:path <http://data.vlaanderen.be/ns/besluit#onderwerp> ; sh:or ( [ sh:datatype <http://www.w3.org/2001/XMLSchema#string> ] [ sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ] ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#ArtikelShape> a sh:NodeShape ;
+    sh:targetClass <http://data.vlaanderen.be/ns/besluit#Artikel> ;
+    sh:property [ sh:name "nummer" ; sh:description "Het nummer van het artikel." ; sh:path <http://data.europa.eu/eli/ontology#number> ; sh:or ( [ sh:datatype <http://www.w3.org/2001/XMLSchema#string> ] [ sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ] ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#BesluitShape> a sh:NodeShape ;
+    sh:targetClass <http://data.vlaanderen.be/ns/besluit#Besluit> ;
+    sh:property [ sh:name "realiseert" ; sh:description "De rechtsgrond beschreven door dit besluit." ; sh:path <http://data.europa.eu/eli/ontology#realizes> ; sh:class <http://data.europa.eu/eli/ontology#LegalResource> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "volgtUit" ; sh:description "De behandeling van het agendapunt die tot dit besluit heeft geleid." ; sh:path <http://www.w3.org/ns/prov#wasGeneratedBy> ; sh:class <http://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt> ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "beschrijving" ; sh:description "Een beknopte beschrijving van het besluit." ; sh:path <http://data.europa.eu/eli/ontology#description> ; sh:or ( [ sh:datatype <http://www.w3.org/2001/XMLSchema#string> ] [ sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ] ) ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "citeeropschrift" ; sh:description "De beknopte titel of officiële korte naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd. Deze benaming wordt in de praktijk gebruikt om naar de rechtsgrond te verwijzen." ; sh:path <http://data.europa.eu/eli/ontology#title_short> ; sh:or ( [ sh:datatype <http://www.w3.org/2001/XMLSchema#string> ] [ sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ] ) ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "motivering" ; sh:description "Beschrijving van de juridische en feitelijke motivering achter de beslissing die wordt uitgedrukt in het besluit." ; sh:path <http://data.vlaanderen.be/ns/besluit#motivering> ; sh:nodeKind sh:Literal ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:name "publicatiedatum" ; sh:description "De officiële publicatiedatum van het besluit." ; sh:path <http://data.europa.eu/eli/ontology#date_publication> ; sh:datatype <http://www.w3.org/2001/XMLSchema#date> ; sh:maxCount 1 ] ;
+    sh:closed false .
+
+
+# Concept
+<http://www.w3.org/2004/02/skos/shacl/Concept> a sh:NodeShape ;
+    sh:targetClass <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:closed false .
+
+# Besluit types
+
+<https://data.vlaanderen.be/shacl/besluit-type#b0fcc0c3-bb33-427f-8da2-4ef3833c9060> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/b0fcc0c3-bb33-427f-8da2-4ef3833c9060> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#c258f7b8-0bcc-481c-923d-b58b15248422> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/c258f7b8-0bcc-481c-923d-b58b15248422> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#c417f3da-a3bd-47c5-84bf-29007323a362> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/c417f3da-a3bd-47c5-84bf-29007323a362> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#f56c645d-b8e1-4066-813d-e213f5bc529f> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/f56c645d-b8e1-4066-813d-e213f5bc529f> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#b69c9f18-967c-4feb-90a8-8eea3c8ce46b> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/b69c9f18-967c-4feb-90a8-8eea3c8ce46b> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#cb361927-1aab-4016-bd8a-1a84841391ba> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/cb361927-1aab-4016-bd8a-1a84841391ba> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#1105564e-30c7-4371-a864-6b7329cdae6f> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/1105564e-30c7-4371-a864-6b7329cdae6f> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#3fcf7dba-2e5b-4955-a489-6dd8285c013b> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/3fcf7dba-2e5b-4955-a489-6dd8285c013b> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#4efa4632-efc6-40d5-815a-dec785fbceac> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/4efa4632-efc6-40d5-815a-dec785fbceac> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#6af621e2-c807-479e-a6f2-2d64d8339491> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/6af621e2-c807-479e-a6f2-2d64d8339491> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#b25faa84-3ab5-47ae-98c0-1b389c77b827> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/b25faa84-3ab5-47ae-98c0-1b389c77b827> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#dbc58656-b0a5-4e43-8e9e-701acb75f9b0> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/dbc58656-b0a5-4e43-8e9e-701acb75f9b0> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#f276bc3b-2d79-4c55-81b8-092e05619676> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/f276bc3b-2d79-4c55-81b8-092e05619676> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#f8c070bd-96e4-43a1-8c6e-532bcd771251> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/f8c070bd-96e4-43a1-8c6e-532bcd771251> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#2f189152-1786-4b55-a3a9-d7f06de63f1c> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/2f189152-1786-4b55-a3a9-d7f06de63f1c> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#40831a2c-771d-4b41-9720-0399998f1873> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/40831a2c-771d-4b41-9720-0399998f1873> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#849c66c2-ba33-4ac1-a693-be48d8ac7bc7> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/849c66c2-ba33-4ac1-a693-be48d8ac7bc7> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#bf72e38a-2c73-4484-b82f-c642a4c39d0c> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/bf72e38a-2c73-4484-b82f-c642a4c39d0c> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#70ae4d36-de0c-425d-9dbe-3b6deef8343c> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/70ae4d36-de0c-425d-9dbe-3b6deef8343c> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#4350cdda-8291-4055-9026-5c7429357fce> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/4350cdda-8291-4055-9026-5c7429357fce> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#5226e23d-617d-48b9-9c00-3d679ae88fec> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/5226e23d-617d-48b9-9c00-3d679ae88fec> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#8bdc614a-d2f2-44c0-8cb1-447b1017d312> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/8bdc614a-d2f2-44c0-8cb1-447b1017d312> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#f1fd8f88-95b0-4085-b766-008b5867d992> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/f1fd8f88-95b0-4085-b766-008b5867d992> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#51982214-0d8b-4cd9-87cf-c46570cd1ed3> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/51982214-0d8b-4cd9-87cf-c46570cd1ed3> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#67378dd0-5413-474b-8996-d992ef81637a> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/67378dd0-5413-474b-8996-d992ef81637a> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#e44c535d-4339-4d15-bdbf-d4be6046de2c> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/e44c535d-4339-4d15-bdbf-d4be6046de2c> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#6199a44b-0d6c-407c-833a-73abb104efce> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/6199a44b-0d6c-407c-833a-73abb104efce> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#a0a709a7-ac07-4457-8d40-de4aea9b1432> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/a0a709a7-ac07-4457-8d40-de4aea9b1432> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#df261490-cc74-4f80-b783-41c35e720b46> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/df261490-cc74-4f80-b783-41c35e720b46> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#e27ef237-29de-49b8-be22-4ee2ab2d4e5b> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/e27ef237-29de-49b8-be22-4ee2ab2d4e5b> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#f1d16307-164c-4278-87b9-1d3b1d968f67> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/f1d16307-164c-4278-87b9-1d3b1d968f67> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#82d0696e-1225-4684-826a-923b2453f5e3> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/82d0696e-1225-4684-826a-923b2453f5e3> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#9f12dc58-18ba-4a1f-9e7a-cf73d0b4f025> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/9f12dc58-18ba-4a1f-9e7a-cf73d0b4f025> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#f4ba730e-3f12-4c2f-81cf-31922b6da166> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/f4ba730e-3f12-4c2f-81cf-31922b6da166> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#4511f992-2b52-42fe-9cb6-feae6241ad26> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/4511f992-2b52-42fe-9cb6-feae6241ad26> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#b04bc642-c892-4aae-ac1f-f6ff21362704> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/b04bc642-c892-4aae-ac1f-f6ff21362704> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#79414af4-4f57-4ca3-aaa4-f8f1e015e71c> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/79414af4-4f57-4ca3-aaa4-f8f1e015e71c> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#bd0b0c42-ba5e-4acc-b644-95f6aad904c7> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/bd0b0c42-ba5e-4acc-b644-95f6aad904c7> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#380674ee-0894-4c41-bcc1-9deaeb9d464c> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/380674ee-0894-4c41-bcc1-9deaeb9d464c> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#9a02d21f-fdc4-455e-8892-c2ae1d33759a> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/9a02d21f-fdc4-455e-8892-c2ae1d33759a> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#c945b531-4742-43fe-af55-b13da6ecc6fe> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/c945b531-4742-43fe-af55-b13da6ecc6fe> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#d9c3d177-6dc6-4775-8c6a-1055a9cbdcc6> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/d9c3d177-6dc6-4775-8c6a-1055a9cbdcc6> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#fb21d14b-734b-48f4-bd4e-888163fd08e8> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/fb21d14b-734b-48f4-bd4e-888163fd08e8> ;
+    sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-type#d7060f97-c417-474c-abc6-ef006cb61f41> a sh:NodeShape ;
+    sh:targetClass <https://data.vlaanderen.be/id/concept/BesluitType/d7060f97-c417-474c-abc6-ef006cb61f41> ;
+    sh:closed false .

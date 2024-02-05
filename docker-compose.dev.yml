@@ -1,0 +1,90 @@
+version: "3.7"
+
+services:
+  identifier:
+    restart: "no"
+
+
+  dispatcher:
+    restart: "no"
+
+  frontend:
+    restart: "no"
+
+  database:
+    restart: "no"
+
+  virtuoso:
+    ports:
+      - "8890:8890"
+    restart: "no"
+
+  migrations:
+    restart: "no"
+
+  cache:
+    restart: "no"
+
+  resource:
+    restart: "no"
+
+  deltanotifier:
+    restart: "no"
+
+  file:
+    restart: "no"
+
+  harvest_singleton-job:
+    restart: "no"
+
+  harvest_check-url:
+    restart: "no"
+
+  harvest_scraper:
+    restart: "no"
+
+  harvest_import:
+    restart: "no"
+
+  harvest_validate:
+    restart: "no"
+    environment:
+      LOGGING_LEVEL: "INFO" # optionals
+  # harvest_compression:
+  #   restart: "no"
+  harvest_gen_delta:
+    restart: "no"
+
+  harvest_diff:
+    restart: "no"
+
+  harvest_sameas:
+    restart: "no"
+
+  job-controller:
+    restart: "no"
+
+  scheduled-job-controller:
+    restart: "no"
+
+  deliver-email:
+    restart: "no"
+
+  error-alert:
+    environment:
+      EMAIL_FROM: "noreply@lblod.info"
+      EMAIL_TO: "noreply@lblod.info"
+    restart: "no"
+
+  delta-producer-report-generator:
+    restart: "no"
+
+  delta-producer-dump-file-publisher:
+    restart: "no"
+
+  delta-producer-background-jobs-initiator:
+    restart: "no"
+  delta-producer-publication-graph-maintainer:
+    restart: "no"
+  login:
+    restart: "no"

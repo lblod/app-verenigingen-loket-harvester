@@ -1,0 +1,136 @@
+{
+  "http://lblod.data.gift/id/jobs/concept/JobOperation/lblodHarvesting": {
+    "tasksConfiguration": [
+      {
+        "currentOperation": null,
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/singleton-job",
+        "nextIndex": "0"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/singleton-job",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/collecting",
+        "nextIndex": "1"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/collecting",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/importing",
+        "nextIndex": "2"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/importing",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/filtering",
+        "nextIndex": "3"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/filtering",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/add-uuids",
+        "nextIndex": "4"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/add-uuids",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/diff",
+        "nextIndex": "5"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/diff",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/checking-urls",
+        "nextIndex": "6"
+      }
+    ]
+  },
+  "http://lblod.data.gift/id/jobs/concept/JobOperation/publishHarvestedTriples": {
+    "tasksConfiguration": [
+      {
+        "currentOperation": null,
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/publishHarvestedTriples",
+        "nextIndex": "0"
+      }
+    ]
+  },
+  "http://lblod.data.gift/id/jobs/concept/JobOperation/lblodHarvestAndPublish": {
+    "tasksConfiguration": [
+      {
+        "currentOperation": null,
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/singleton-job",
+        "nextIndex": "0"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/singleton-job",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/collecting",
+        "nextIndex": "1"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/collecting",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/importing",
+        "nextIndex": "2"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/importing",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/filtering",
+        "nextIndex": "3"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/filtering",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/add-uuids",
+        "nextIndex": "4"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/add-uuids",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/diff",
+        "nextIndex": "5"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/diff",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/publishHarvestedTriples",
+        "nextIndex": "6"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/publishHarvestedTriples",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/generatingDelta",
+        "nextIndex": "7"
+      },
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/generatingDelta",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/checking-urls",
+        "nextIndex": "8"
+      }
+    ]
+  },
+  "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/besluiten": {
+    "tasksConfiguration": [
+      {
+        "currentOperation": null,
+        "nextOperation": "http://redpencil.data.gift/id/jobs/concept/TaskOperation/deltas/initialPublicationGraphSyncing",
+        "nextIndex": "0"
+      },
+      {
+        "currentOperation": "http://redpencil.data.gift/id/jobs/concept/TaskOperation/deltas/initialPublicationGraphSyncing",
+        "nextOperation": "http://redpencil.data.gift/id/jobs/concept/TaskOperation/deltas/deltaDumpFileCreation",
+        "nextIndex": "1"
+      }
+    ]
+  },
+  "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/healingOperation/besluiten": {
+    "tasksConfiguration": [
+      {
+        "currentOperation": null,
+        "nextOperation": "http://redpencil.data.gift/id/jobs/concept/TaskOperation/deltas/healing/patchPublicationGraph",
+        "nextIndex": "0"
+      },
+      {
+        "currentOperation": "http://redpencil.data.gift/id/jobs/concept/TaskOperation/deltas/healing/patchPublicationGraph",
+        "nextOperation": "http://redpencil.data.gift/id/jobs/concept/TaskOperation/deltas/healing/reportGeneration",
+        "nextIndex": "1"
+      }
+    ]
+  },
+  "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/besluiten": {
+    "tasksConfiguration": [
+      {
+        "currentOperation": null,
+        "nextOperation": "http://redpencil.data.gift/id/jobs/concept/TaskOperation/deltas/deltaDumpFileCreation",
+        "nextIndex": "0"
+      }
+    ]
+  }
+}

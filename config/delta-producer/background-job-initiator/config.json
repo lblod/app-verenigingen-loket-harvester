@@ -1,0 +1,14 @@
+[
+  {
+    "name": "besluiten",
+    "jobsGraph": "http://mu.semte.ch/graphs/harvesting",
+    "dumpFileCreationJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/besluiten",
+    "initialPublicationGraphSyncJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/besluiten",
+    "healingJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/healingOperation/besluiten",
+    "cronPatternDumpJob": "0 0 0 * * 6",
+    "cronPatternHealingJob": "0 0 2 * * *",
+    "startInitialSync": false,
+    "errorCreatorUri": "http://lblod.data.gift/services/delta-producer-background-jobs-initiator-besluiten",
+    "disableDumpFileCreation": true
+  }
+]

@@ -1,0 +1,298 @@
+{
+  "export": [
+    {
+      "type": "http://data.vlaanderen.be/ns/besluit#Agendapunt",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://data.vlaanderen.be/ns/besluit#aangebrachtNa",
+        "http://purl.org/dc/terms/description",
+        "http://data.vlaanderen.be/ns/besluit#geplandOpenbaar",
+        "http://data.vlaanderen.be/ns/besluit#heeftOntwerpbesluit",
+        "http://purl.org/dc/terms/reference",
+        "http://purl.org/dc/terms/title",
+        "http://data.vlaanderen.be/ns/besluit#Agendapunt.type",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom",
+        "http://www.w3.org/ns/prov#value"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#description": {
+          "queryChunkSize": 100000
+        },
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
+    },
+    {
+      "type": "http://data.vlaanderen.be/ns/besluit#Artikel",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://data.europa.eu/eli/ontology#number",
+        "http://data.europa.eu/eli/ontology#realizes",
+        "http://data.europa.eu/eli/ontology#cites",
+        "http://data.europa.eu/eli/ontology#corrects",
+        "http://data.europa.eu/eli/ontology#corrected_by",
+        "http://data.europa.eu/eli/ontology#language",
+        "http://data.europa.eu/eli/ontology#title",
+        "http://data.europa.eu/eli/ontology#changed_by",
+        "http://data.europa.eu/eli/ontology#changes",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom",
+        "http://www.w3.org/ns/prov#value"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
+    },
+    {
+      "type": "http://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://data.vlaanderen.be/ns/besluit#gebeurtNa",
+        "http://www.w3.org/ns/prov#generated",
+        "http://data.vlaanderen.be/ns/besluit#heeftAanwezige",
+        "http://purl.org/dc/terms/subject",
+        "http://data.vlaanderen.be/ns/besluit#heeftSecretaris",
+        "http://data.vlaanderen.be/ns/besluit#heeftStemming",
+        "http://data.vlaanderen.be/ns/besluit#heeftVoorzitter",
+        "http://data.vlaanderen.be/ns/besluit#openbaar",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom",
+        "http://www.w3.org/ns/prov#value"
+      ]
+    },
+    {
+      "type": "http://data.vlaanderen.be/ns/besluit#Besluit",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://data.europa.eu/eli/ontology#description",
+        "http://data.europa.eu/eli/ontology#title_short",
+        "http://data.vlaanderen.be/ns/besluit#motivering",
+        "http://data.europa.eu/eli/ontology#date_publication",
+        "http://data.europa.eu/eli/ontology#realizes",
+        "http://www.w3.org/ns/prov#wasGeneratedBy",
+        "http://data.europa.eu/eli/ontology#cites",
+        "http://data.europa.eu/eli/ontology#corrects",
+        "http://data.europa.eu/eli/ontology#corrected_by",
+        "http://data.europa.eu/eli/ontology#language",
+        "http://data.europa.eu/eli/ontology#title",
+        "http://data.europa.eu/eli/ontology#changed_by",
+        "http://data.europa.eu/eli/ontology#changes",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://data.europa.eu/eli/ontology#passed_by",
+        "http://data.europa.eu/eli/ontology#has_part",
+        "http://data.europa.eu/eli/ontology#date_no_longer_in_force",
+        "http://data.europa.eu/eli/ontology#first_date_entry_in_force",
+        "http://data.europa.eu/eli/ontology#type_document",
+        "http://www.w3.org/ns/prov#wasDerivedFrom",
+        "http://www.w3.org/ns/prov#value"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#description": {
+          "queryChunkSize": 100000
+        },
+        "http://data.vlaanderen.be/ns/besluit#motivering": {
+          "queryChunkSize": 50000
+        },
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        },
+        "http://www.w3.org/ns/prov#value": {
+          "queryChunkSize": 50000
+        }
+      }
+    },
+    {
+      "type": "http://xmlns.com/foaf/0.1/Document",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://www.w3.org/2002/07/owl#sameAs"
+      ]
+    },
+    {
+      "type": "https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://purl.org/dc/terms/isPartOf",
+        "https://data.vlaanderen.be/ns/generiek#nummer",
+        "http://purl.org/dc/terms/type",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom",
+        "http://www.w3.org/ns/prov#value"
+      ],
+      "healingOptions": {
+        "http://www.w3.org/ns/prov#value": {
+          "queryChunkSize": 50000
+        }
+      }
+    },
+    {
+      "type": "http://data.europa.eu/eli/ontology#LegalExpression",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://data.europa.eu/eli/ontology#date_no_longer_in_force",
+        "http://data.europa.eu/eli/ontology#cites",
+        "http://data.europa.eu/eli/ontology#corrects",
+        "http://data.europa.eu/eli/ontology#corrected_by",
+        "http://data.europa.eu/eli/ontology#first_date_entry_in_force",
+        "http://data.europa.eu/eli/ontology#type_document",
+        "http://www.w3.org/ns/prov#value",
+        "http://data.europa.eu/eli/ontology#language",
+        "http://data.europa.eu/eli/ontology#title",
+        "http://data.europa.eu/eli/ontology#changed_by",
+        "http://data.europa.eu/eli/ontology#changes",
+        "http://data.europa.eu/eli/ontology#passed_by",
+        "http://data.europa.eu/eli/ontology#has_part",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom",
+        "http://www.w3.org/ns/prov#value"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        },
+        "http://www.w3.org/ns/prov#value": {
+          "queryChunkSize": 50000
+        }
+      }
+    },
+    {
+      "type": "http://data.europa.eu/eli/ontology#LegalResource",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://data.europa.eu/eli/ontology#date_no_longer_in_force",
+        "http://data.europa.eu/eli/ontology#cites",
+        "http://data.europa.eu/eli/ontology#corrects",
+        "http://data.europa.eu/eli/ontology#corrected_by",
+        "http://data.europa.eu/eli/ontology#first_date_entry_in_force",
+        "http://data.europa.eu/eli/ontology#type_document",
+        "http://www.w3.org/ns/prov#value",
+        "http://data.europa.eu/eli/ontology#language",
+        "http://data.europa.eu/eli/ontology#title",
+        "http://data.europa.eu/eli/ontology#changed_by",
+        "http://data.europa.eu/eli/ontology#changes",
+        "http://data.europa.eu/eli/ontology#passed_by",
+        "http://data.europa.eu/eli/ontology#has_part",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom",
+        "http://www.w3.org/ns/prov#value"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        },
+        "http://www.w3.org/ns/prov#value": {
+          "queryChunkSize": 50000
+        }
+      }
+    },
+    {
+      "type": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://data.europa.eu/eli/ontology#is_part_of",
+        "http://data.europa.eu/eli/ontology#date_no_longer_in_force",
+        "http://data.europa.eu/eli/ontology#cites",
+        "http://data.europa.eu/eli/ontology#corrects",
+        "http://data.europa.eu/eli/ontology#corrected_by",
+        "http://data.europa.eu/eli/ontology#cites",
+        "http://data.europa.eu/eli/ontology#first_date_entry_in_force",
+        "http://data.europa.eu/eli/ontology#type_document",
+        "http://data.europa.eu/eli/ontology#changed_by",
+        "http://data.europa.eu/eli/ontology#changes",
+        "http://data.europa.eu/eli/ontology#passed_by",
+        "http://data.europa.eu/eli/ontology#has_part",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom",
+        "http://www.w3.org/ns/prov#value"
+      ],
+      "healingOptions": {
+        "http://www.w3.org/ns/prov#value": {
+          "queryChunkSize": 50000
+        }
+      }
+    },
+    {
+      "type": "http://data.vlaanderen.be/ns/besluit#Stemming",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://data.vlaanderen.be/ns/besluit#aantalOnthouders",
+        "http://data.vlaanderen.be/ns/besluit#aantalTegenstanders",
+        "http://data.vlaanderen.be/ns/besluit#aantalVoorstanders",
+        "http://data.vlaanderen.be/ns/besluit#geheim",
+        "http://data.vlaanderen.be/ns/besluit#gevolg",
+        "http://data.vlaanderen.be/ns/besluit#heeftAanwezige",
+        "http://data.vlaanderen.be/ns/besluit#heeftOnthouder",
+        "http://data.vlaanderen.be/ns/besluit#heeftStemmer",
+        "http://data.vlaanderen.be/ns/besluit#heeftTegenstander",
+        "http://data.vlaanderen.be/ns/besluit#heeftVoorstander",
+        "http://data.vlaanderen.be/ns/besluit#onderwerp",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom",
+        "http://www.w3.org/ns/prov#value"
+      ],
+      "healingOptions": {
+        "http://www.w3.org/ns/prov#value": {
+          "queryChunkSize": 50000
+        }
+      }
+    },
+    {
+      "type": "http://data.vlaanderen.be/ns/besluit#Vergaderactiviteit",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://data.vlaanderen.be/ns/besluit#heeftAanwezige",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
+      ]
+    },
+    {
+      "type": "http://data.vlaanderen.be/ns/besluit#Zitting",
+      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://data.vlaanderen.be/ns/besluit#behandelt",
+        "http://data.vlaanderen.be/ns/besluit#geplandeStart",
+        "http://www.w3.org/ns/prov#startedAtTime",
+        "http://www.w3.org/ns/prov#endedAtTime",
+        "http://data.vlaanderen.be/ns/besluit#heeftAanwezigeBijStart",
+        "http://data.vlaanderen.be/ns/besluit#heeftNotulen",
+        "http://data.vlaanderen.be/ns/besluit#heeftAgenda",
+        "http://data.vlaanderen.be/ns/besluit#heeftBesluitenlijst",
+        "http://data.vlaanderen.be/ns/besluit#heeftSecretaris",
+        "http://data.vlaanderen.be/ns/besluit#heeftVoorzitter",
+        "http://data.vlaanderen.be/ns/besluit#heeftZittingsverslag",
+        "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
+        "http://www.w3.org/ns/prov#atLocation",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasDerivedFrom"
+      ]
+    }
+  ]
+}
