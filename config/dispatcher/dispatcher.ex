@@ -125,10 +125,10 @@ defmodule Dispatcher do
   end
 
   #################################################################
-  # lblod-harvester besluiten sync
+  # lblod-harvester verenigingen sync
   #################################################################
-  get "/sync/besluiten/files/*path", %{ layer: :resources, accept: %{ json: true } } do
-    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/besluiten/files/"
+  get "/sync/verenigingen/files/*path", %{ layer: :resources, accept: %{ json: true } } do
+    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/verenigingen/files/"
   end
   #################################################################
   # login

@@ -1,7 +1,7 @@
 {
   "creators": [
-    "http://lblod.data.gift/services/delta-producer-background-jobs-initiator-besluiten",
-    "http://lblod.data.gift/services/delta-producer-publication-graph-maintainer-besluiten",
+    "http://lblod.data.gift/services/delta-producer-background-jobs-initiator-verenigingen",
+    "http://lblod.data.gift/services/delta-producer-publication-graph-maintainer-verenigingen",
     "http://lblod.data.gift/services/delta-producer-dump-file-publisher"
   ]
 }

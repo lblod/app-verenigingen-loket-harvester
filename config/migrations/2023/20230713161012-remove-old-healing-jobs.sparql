@@ -18,7 +18,7 @@ DELETE {
 WHERE {
    GRAPH ?g {
      ?job a <http://vocab.deri.ie/cogs#Job>;
-          task:operation <http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/healingOperation/besluiten>;
+          task:operation <http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/healingOperation/verenigingen>;
           adms:status ?status;
           ?p ?o.
    }

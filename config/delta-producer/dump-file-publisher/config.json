@@ -1,15 +1,15 @@
 {
-  "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/besluiten" : {
-    "dcatDataSetSubject": "http://data.lblod.info/datasets/delta-producer/dumps/lblod-harvester/BesluitenCacheGraphDump",
-    "targetGraph": "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer",
-    "fileBaseName": "dump-besluiten",
+  "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/verenigingen" : {
+    "dcatDataSetSubject": "http://data.lblod.info/datasets/delta-producer/dumps/lblod-harvester/VerenigingenCacheGraphDump",
+    "targetGraph": "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-verenigingen-producer",
+    "fileBaseName": "dump-verenigingen",
     "publicationGraphEndpoint": "http://virtuoso:8890/sparql",
     "cleanupOldDumps": true
   },
-  "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/besluiten" : {
-    "dcatDataSetSubject": "http://data.lblod.info/datasets/delta-producer/dumps/lblod-harvester/BesluitenCacheGraphDump",
-    "targetGraph": "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer",
-    "fileBaseName": "dump-besluiten",
+  "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/verenigingen" : {
+    "dcatDataSetSubject": "http://data.lblod.info/datasets/delta-producer/dumps/lblod-harvester/VerenigingenCacheGraphDump",
+    "targetGraph": "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-verenigingen-producer",
+    "fileBaseName": "dump-verenigingen",
     "publicationGraphEndpoint": "http://virtuoso:8890/sparql",
     "cleanupOldDumps": true
   }

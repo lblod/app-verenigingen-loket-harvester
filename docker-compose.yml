@@ -43,7 +43,7 @@ services:
     labels:
       - "logging=true"
   frontend:
-    image: lblod/frontend-harvesting-self-service:2.1.5
+    image: lblod/frontend-harvesting-self-service:2.2.0
     volumes:
       - ./config/frontend:/config
     labels:
@@ -151,17 +151,6 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-  # harvest_compression:
-  #   image: lblod/job-compression-service:0.2.4
-  #   volumes:
-  #     - ./data/files:/share
-  #   environment:
-  #     DEFAULT_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-  #     HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
-  #   labels:
-  #     - "logging=true"
-  #   restart: always
-  #   logging: *default-logging
   harvest_check-url:
     image: lblod/harvest-check-url-collection-service:1.3.1
     volumes:
@@ -197,7 +186,7 @@ services:
     logging: *default-logging
 
   harvest_diff:
-    image: lblod/harvesting-diff-service:0.2.2
+    image: lblod/harvesting-diff-service:0.1.4
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       PUBLICATION_GRAPH: "http://mu.semte.ch/graphs/public"
@@ -210,7 +199,7 @@ services:
     logging: *default-logging
 
   harvest_sameas:
-    image: lblod/import-with-sameas-service:4.1.1
+    image: lblod/import-with-sameas-service:3.6.1
     environment:
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
@@ -225,10 +214,10 @@ services:
   harvest_gen_delta:
     image: lblod/harvesting-generation-delta-service:0.1.1
     environment:
-      TARGET_DIRECTORY_DELTA_PATH: "/share/deltas/besluiten"
+      TARGET_DIRECTORY_DELTA_PATH: "/share/deltas/verenigingen"
       BUFFER_SIZE: "100"
-      PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-besluiten"
-      TARGET_PUBLISHER_GRAPH: "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-besluiten-producer"
+      PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-verenigingen"
+      TARGET_PUBLISHER_GRAPH: "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-verenigingen-producer"
       HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
       - ./data/files:/share
