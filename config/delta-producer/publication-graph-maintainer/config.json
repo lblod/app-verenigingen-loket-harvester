@@ -11,7 +11,7 @@
     "initialPublicationGraphSyncJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/verenigingen",
     "jobsGraph": "http://mu.semte.ch/graphs/harvesting",
     "loginPath": "/verenigingen/login",
-    "publicationGraph": "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-verenigingen-producer",
+    "publicationGraph": "http://mu.semte.ch/graphs/harvesting",
     "publisherUri": "http://data.lblod.info/services/delta-production-json-diff-file-manager-verenigingen",
     "queuePollInterval": 3000,
     "relativeFilePath": "deltas/verenigingen",

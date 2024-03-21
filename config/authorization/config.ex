@@ -23,6 +23,7 @@ defmodule Acl.UserGroups.Config do
         name: "harvesting",
         useage: [:write, :read_for_write, :read],
         access: logged_in_user(),
+        # access: %AlwaysAccessible{},
         graphs: [ %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/harvesting",
                     constraint: %ResourceConstraint{

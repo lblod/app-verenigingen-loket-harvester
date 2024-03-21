@@ -1,24 +1,155 @@
 {
   "export": [
     {
+      "_comment": "VERENIGINGEN",
       "type": "https://data.vlaanderen.be/ns/FeitelijkeVerenigingen#FeitelijkeVerenigingen",
-      "graphsFilter": [ "http://mu.semte.ch/graphs/public" ],
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/harvesting"
+      ],
       "properties": [
-        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-        "http://mu.semte.ch/vocabularies/core/uuid",
+       "https://purl.org/pav/createdOn",
+       "https://data.lblod.info/ns/korteNaam",
+       "http://www.w3.org/ns/regorg#orgStatus",
+       "http://www.w3.org/ns/org#hasPrimarySite"
+       ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#description": {
+          "queryChunkSize": 100000
+        },
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
+    },
+    {
+      "_comment": "CONCEPT",
+      "type": "http://www.w3.org/2004/02/skos/core#Concept",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/harvesting"
+      ],
+      "properties": [
         "http://www.w3.org/2004/02/skos/core#prefLabel",
         "http://www.w3.org/2004/02/skos/core#notation",
-        "https://schema.org/contactPoint",
-        "http://www.w3.org/ns/regorg#orgStatus",
-        "https://data.vlaanderen.be/ns/vertegenwoordigers",
-        "https://data.vlaanderen.be/ns/korteNaam",
-        "http://purl.org/dc/terms/description",
-        "http://www.w3.org/ns/org#hasSite",
-        "http://www.w3.org/ns/adms#identifier",
-        "http://data.lblod.info/vocabularies/FeitelijkeVerenigingen/doelgroep",
-        "https://data.vlaanderen.be/ns/startdatum",
-        "http://www.w3.org/ns/org#classification",
-        "http://www.w3.org/ns/regorg#orgActivity"
+        "http://purl.org/dc/terms/modified",
+        "http://www.w3.org/2004/02/skos/core#inScheme",
+        "http://www.w3.org/2004/02/skos/core#broader",
+        "http://www.w3.org/2004/02/skos/core#hasTopConcept"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#description": {
+          "queryChunkSize": 100000
+        },
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
+    },
+    {
+      "_comment": "CONCEPTSCHEME",
+      "type": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/harvesting"
+      ],
+      "properties": [
+        "http://www.w3.org/2004/02/skos/core#prefLabel",
+        "http://www.w3.org/2004/02/skos/core#definition",
+        "http://www.w3.org/2004/02/skos/core#inScheme",
+        "http://www.w3.org/2004/02/skos/core#hasTopConcept"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#description": {
+          "queryChunkSize": 100000
+        },
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
+    },
+    {
+      "_comment": "IDENTIFIER",
+      "type": "http://www.w3.org/ns/adms#Identifier",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/harvesting"
+      ],
+      "properties": [
+        "http://www.w3.org/2004/02/skos/core#notation",
+        "https://data.vlaanderen.be/ns/generiek#gestructureerdeIdentificator"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#description": {
+          "queryChunkSize": 100000
+        },
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
+    },
+    {
+      "_comment": "GESTRUCTUREERDE IDENTIFICATOR",
+      "type": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/public"
+      ],
+      "properties": [
+        "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#description": {
+          "queryChunkSize": 100000
+        },
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
+    },
+    {
+      "_comment": "DOELGROEP",
+      "type": "http://data.lblod.info/vocabularies/FeitelijkeVerenigingen/Doelgroep",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/public"
+      ],
+      "properties": [
+        "http://data.lblod.info/vocabularies/FeitelijkeVerenigingen/minimumleeftijd",
+        "http://data.lblod.info/vocabularies/FeitelijkeVerenigingen/maximumleeftijd"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#description": {
+          "queryChunkSize": 100000
+        },
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
+    },
+    {
+      "_comment": "CHANGE EVENT",
+      "type": "http://www.w3.org/ns/org#ChangeEvent",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/public"
+      ],
+      "properties": [
+        "http://purl.org/dc/terms/date",
+        "http://data.lblod.info/vocabularies/contacthub/typeWijziging",
+        "http://www.w3.org/ns/locn#veranderingsgebeurtenisResultaat",
+        "http://www.w3.org/ns/org#resultingOrganization"
+      ],
+      "healingOptions": {
+        "http://data.europa.eu/eli/ontology#description": {
+          "queryChunkSize": 100000
+        },
+        "http://data.europa.eu/eli/ontology#title": {
+          "queryChunkSize": 100000
+        }
+      }
+    },
+    {
+      "_comment": "CHANGES",
+      "type": "orga:Veranderingsgebeurtenis",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/public"
+      ],
+      "properties": [
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
       ],
       "healingOptions": {
         "http://data.europa.eu/eli/ontology#description": {

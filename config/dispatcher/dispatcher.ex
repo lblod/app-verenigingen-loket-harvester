@@ -52,9 +52,16 @@ defmodule Dispatcher do
     forward conn, [], "http://frontend/index.html"
   end
 
-  # match "/favicon.ico", @any do
-  #   send_resp( conn, 404, "" )
-  # end
+  match "/favicon.ico", @any do
+    send_resp( conn, 404, "" )
+  end
+
+  #################################################################
+  # lblod-harvester verenigingen sync
+  #################################################################
+  get "/sync/verenigingen/files/*path", %{ layer: :api_services, accept: %{ json: true } } do
+    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/verenigingen/files/"
+  end
 
   ###############
   # RESOURCES
@@ -124,12 +131,7 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/files/"
   end
 
-  #################################################################
-  # lblod-harvester verenigingen sync
-  #################################################################
-  get "/sync/verenigingen/files/*path", %{ layer: :resources, accept: %{ json: true } } do
-    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/verenigingen/files/"
-  end
+
   #################################################################
   # login
   #################################################################

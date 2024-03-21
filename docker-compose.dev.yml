@@ -4,7 +4,6 @@ services:
   identifier:
     restart: "no"
 
-
   dispatcher:
     restart: "no"
 
@@ -15,8 +14,6 @@ services:
     restart: "no"
 
   virtuoso:
-    ports:
-      - "8890:8890"
     restart: "no"
 
   migrations:
@@ -74,6 +71,7 @@ services:
     environment:
       EMAIL_FROM: "noreply@lblod.info"
       EMAIL_TO: "noreply@lblod.info"
+      APP_NAME: "HARVESTER ASSOCIATIONS"
     restart: "no"
 
   delta-producer-report-generator:

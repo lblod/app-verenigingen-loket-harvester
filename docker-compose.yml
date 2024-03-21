@@ -10,7 +10,7 @@ services:
   identifier:
     image: semtech/mu-identifier:1.10.1
     environment:
-      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: '[{"variables":[],"name":"public"},{"variables":[],"name":"harvesting-public"},{"variables":[],"name":"clean"}]'
+      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: '[{"variables":[],"name":"public"},{"variables":[],"name":"harvesting"},{"variables":[],"name":"clean"}]'
       DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
       VIRTUAL_HOST: "harvester.oscart-dev.s.redhost.be"
       LETSENCRYPT_HOST: "harvester.oscart-dev.s.redhost.be"
@@ -139,7 +139,6 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-
     # TODO: VERANDER DIT
   harvest_scraper:
     image: custom-scraper-service:latest
@@ -159,7 +158,7 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-# TODO: VERANDER DIT
+  # TODO: VERANDER DIT
   harvest_import:
     image: custom-import-service:latest
     environment:
@@ -189,7 +188,7 @@ services:
     image: lblod/harvesting-diff-service:0.1.4
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      PUBLICATION_GRAPH: "http://mu.semte.ch/graphs/public"
+      PUBLICATION_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       LIMIT_SIZE: 1000
     volumes:
       - ./data/files:/share
@@ -202,7 +201,7 @@ services:
     image: lblod/import-with-sameas-service:3.6.1
     environment:
       RENAME_DOMAIN: "http://data.lblod.info/id/"
-      TARGET_GRAPH: "http://mu.semte.ch/graphs/public"
+      TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
       - ./config/same-as-service:/config
@@ -217,7 +216,7 @@ services:
       TARGET_DIRECTORY_DELTA_PATH: "/share/deltas/verenigingen"
       BUFFER_SIZE: "100"
       PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-verenigingen"
-      TARGET_PUBLISHER_GRAPH: "http://redpencil.data.gift/id/deltas/producer/lblod-harvester-verenigingen-producer"
+      TARGET_PUBLISHER_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
       - ./data/files:/share
@@ -260,6 +259,10 @@ services:
 
   error-alert:
     image: lblod/loket-error-alert-service:1.0.0
+    environment:
+      EMAIL_FROM: "noreply@lblod.info"
+      EMAIL_TO: "noreply@lblod.info"
+
     volumes:
       - ./config/error-alert:/config/
     labels:
@@ -277,6 +280,9 @@ services:
       - ./config/delta-producer/report-generator:/config
     environment:
       OUTBOX: "http://data.lblod.info/id/mail-folders/2"
+      EMAIL_FROM: "noreply@lblod.info"
+      EMAIL_TO: "noreply@lblod.info"
+      APP_NAME: "HARVESTER ASSOCIATIONS"
     labels:
       - "logging=true"
     restart: always
