@@ -18,18 +18,13 @@
       },
       {
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/importing",
-        "nextOperation":"http://lblod.data.gift/id/jobs/concept/TaskOperation/add-uuids",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/add-uuids",
         "nextIndex": "3"
       },
       {
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/add-uuids",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/diff",
         "nextIndex": "4"
-      },
-      {
-        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/diff",
-        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/checking-urls",
-        "nextIndex": "5"
       }
     ]
   },
@@ -78,11 +73,6 @@
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/publishHarvestedTriples",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/generatingDelta",
         "nextIndex": "6"
-      },
-      {
-        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/generatingDelta",
-        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/checking-urls",
-        "nextIndex": "7"
       }
     ]
   },

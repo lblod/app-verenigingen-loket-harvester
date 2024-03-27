@@ -185,7 +185,7 @@ services:
     logging: *default-logging
 
   harvest_diff:
-    image: lblod/harvesting-diff-service:0.1.4
+    image: lblod/harvesting-diff-service:0.2.2
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       PUBLICATION_GRAPH: "http://mu.semte.ch/graphs/harvesting"
@@ -198,7 +198,7 @@ services:
     logging: *default-logging
 
   harvest_sameas:
-    image: lblod/import-with-sameas-service:3.6.1
+    image: lblod/import-with-sameas-service:4.3.1
     environment:
       RENAME_DOMAIN: "http://data.lblod.info/id/"
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
@@ -214,7 +214,7 @@ services:
     image: lblod/harvesting-generation-delta-service:0.1.1
     environment:
       TARGET_DIRECTORY_DELTA_PATH: "/share/deltas/verenigingen"
-      BUFFER_SIZE: "100"
+      BUFFER_SIZE: "1000000"
       PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-verenigingen"
       TARGET_PUBLISHER_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
