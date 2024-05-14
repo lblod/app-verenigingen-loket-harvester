@@ -2,12 +2,12 @@
   "export": [
     {
       "_comment": "VERENIGINGEN",
-      "type": "https://data.vlaanderen.be/ns/FeitelijkeVerenigingen#FeitelijkeVerenigingen",
+      "type": "https://data.vlaanderen.be/ns/FeitelijkeVerenigingen#FeitelijkeVereniging",
       "graphsFilter": [
         "http://mu.semte.ch/graphs/harvesting"
       ],
       "properties": [
-       "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
         "http://mu.semte.ch/vocabularies/core/uuid",
         "http://www.w3.org/2004/02/skos/core#prefLabel",
         "http://www.w3.org/2004/02/skos/core#notation",
@@ -23,8 +23,10 @@
         "http://data.lblod.info/vocabularies/FeitelijkeVerenigingen/doelgroep",
         "https://data.vlaanderen.be/ns/startdatum",
         "http://www.w3.org/ns/org#classification",
-        "http://www.w3.org/ns/regorg#orgActivity"
-       ],
+        "http://www.w3.org/ns/regorg#orgActivity",
+        "http://www.w3.org/ns/org#hasMembership",
+        "http://purl.org/pav/createdOn"
+      ],
       "healingOptions": {
         "http://data.europa.eu/eli/ontology#description": {
           "queryChunkSize": 100000
@@ -41,6 +43,7 @@
         "http://mu.semte.ch/graphs/harvesting"
       ],
       "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
         "http://www.w3.org/2004/02/skos/core#prefLabel",
         "http://www.w3.org/2004/02/skos/core#notation",
         "http://purl.org/dc/terms/modified",
@@ -64,6 +67,7 @@
         "http://mu.semte.ch/graphs/harvesting"
       ],
       "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
         "http://www.w3.org/2004/02/skos/core#prefLabel",
         "http://www.w3.org/2004/02/skos/core#definition",
         "http://www.w3.org/2004/02/skos/core#inScheme",
@@ -85,6 +89,7 @@
         "http://mu.semte.ch/graphs/harvesting"
       ],
       "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
         "http://www.w3.org/2004/02/skos/core#notation",
         "https://data.vlaanderen.be/ns/generiek#gestructureerdeIdentificator"
       ],
@@ -101,9 +106,10 @@
       "_comment": "GESTRUCTUREERDE IDENTIFICATOR",
       "type": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator",
       "graphsFilter": [
-        "http://mu.semte.ch/graphs/public"
+        "http://mu.semte.ch/graphs/harvesting"
       ],
       "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
         "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator"
       ],
       "healingOptions": {
@@ -119,9 +125,10 @@
       "_comment": "DOELGROEP",
       "type": "http://data.lblod.info/vocabularies/FeitelijkeVerenigingen/Doelgroep",
       "graphsFilter": [
-        "http://mu.semte.ch/graphs/public"
+        "http://mu.semte.ch/graphs/harvesting"
       ],
       "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
         "http://data.lblod.info/vocabularies/FeitelijkeVerenigingen/minimumleeftijd",
         "http://data.lblod.info/vocabularies/FeitelijkeVerenigingen/maximumleeftijd"
       ],
@@ -138,9 +145,10 @@
       "_comment": "CHANGE EVENT",
       "type": "http://www.w3.org/ns/org#ChangeEvent",
       "graphsFilter": [
-        "http://mu.semte.ch/graphs/public"
+        "http://mu.semte.ch/graphs/harvesting"
       ],
       "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
         "http://purl.org/dc/terms/date",
         "http://data.lblod.info/vocabularies/contacthub/typeWijziging",
         "http://www.w3.org/ns/locn#veranderingsgebeurtenisResultaat",
@@ -159,9 +167,10 @@
       "_comment": "CHANGES",
       "type": "orga:Veranderingsgebeurtenis",
       "graphsFilter": [
-        "http://mu.semte.ch/graphs/public"
+        "http://mu.semte.ch/graphs/harvesting"
       ],
       "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
         "http://www.w3.org/2004/02/skos/core#prefLabel"
       ],
       "healingOptions": {
@@ -172,6 +181,133 @@
           "queryChunkSize": 100000
         }
       }
+    },
+    {
+      "type": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/harvesting"
+      ],
+      "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasGeneratedBy",
+        "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator",
+        "https://data.vlaanderen.be/ns/generiek#naamruimte",
+        "https://data.vlaanderen.be/ns/generiek#versieIdentificator",
+        "http://www.w3.org/ns/prov#wasAssociatedWith"
+      ]
+    },
+    {
+      "_comment": "CONTACT POINT",
+      "type": "http://schema.org/ContactPoint",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/harvesting"
+      ],
+      "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasGeneratedBy",
+        "http://www.w3.org/2006/vcard/ns#honorific-prefix",
+        "http://www.w3.org/ns/locn#address",
+        "http://schema.org/hoursAvailable",
+        "http://xmlns.com/foaf/0.1/name",
+        "http://schema.org/email",
+        "http://schema.org/faxNumber",
+        "http://schema.org/openingHours",
+        "http://schema.org/telephone",
+        "http://xmlns.com/foaf/0.1/page",
+        "http://xmlns.com/foaf/0.1/firstName",
+        "http://xmlns.com/foaf/0.1/familyName",
+        "http://schema.org/contactType",
+        "http://schema.org/contactPoint",
+        "https://schema.org/contactPoint",
+        "http://www.w3.org/ns/prov#wasAssociatedWith"
+      ]
+    },
+    {
+      "_comment": "ADDRESS",
+      "type": "http://www.w3.org/ns/locn#Address",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/harvesting"
+      ],
+      "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://www.w3.org/ns/prov#wasGeneratedBy",
+        "http://www.w3.org/ns/locn#location",
+        "http://www.w3.org/ns/locn#geographicName",
+        "http://www.w3.org/ns/locn#seeAlso",
+        "http://www.w3.org/ns/locn#geometry",
+        "http://www.w3.org/ns/locn#address",
+        "http://www.w3.org/ns/locn#fullAddress",
+        "http://www.w3.org/ns/locn#poBox",
+        "http://www.w3.org/ns/locn#thoroughfare",
+        "http://www.w3.org/ns/locn#locatorDesignator",
+        "http://www.w3.org/ns/locn#locatorName",
+        "http://www.w3.org/ns/locn#addressArea",
+        "http://www.w3.org/ns/locn#postName",
+        "http://www.w3.org/ns/locn#adminUnitL2",
+        "http://www.w3.org/ns/locn#adminUnitL1",
+        "http://www.w3.org/ns/locn#postCode",
+        "http://www.w3.org/ns/locn#addressId",
+        "https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer",
+        "https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer",
+        "https://data.vlaanderen.be/ns/adres#gemeentenaam",
+        "https://data.vlaanderen.be/ns/adres#land",
+        "http://data.lblod.info/vocabularies/leidinggevenden/adresRegisterId",
+        "https://data.vlaanderen.be/ns/adres#verwijstNaar",
+        "http://www.w3.org/ns/prov#wasAssociatedWith"
+      ]
+    },
+    {
+      "_comment": "PERSON",
+      "type": "http://www.w3.org/ns/person#Person",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/harvesting"
+      ],
+      "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://www.w3.org/2002/07/owl#sameAs",
+        "http://xmlns.com/foaf/0.1/familyName",
+        "http://xmlns.com/foaf/0.1/givenName",
+        "http://www.w3.org/ns/adms#identifier",
+        "http://schema.org/contactPoint"
+      ]
+    },
+    {
+      "_comment": "ASSOCIATION SITE TYPE",
+      "type": "http://data.vlaanderen.be/id/concept/TypeVestiging",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/harvesting"
+      ],
+      "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ]
+    },
+    {
+      "_comment": "MEMBERSHIP",
+      "type": "http://www.w3.org/ns/org#Membership",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/harvesting"
+      ],
+      "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://www.w3.org/ns/org#member",
+        "http://schema.org/contactPoint"
+      ]
+    },
+    {
+      "_comment": "ACTIVITY",
+      "type": "skos:Concept",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/harvesting"
+      ],
+      "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://www.w3.org/2004/02/skos/core#notation",
+        "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ]
     }
   ]
 }
