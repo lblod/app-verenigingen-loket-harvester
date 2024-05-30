@@ -140,7 +140,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_scraper:
-    image: custom-scraper-service:latest
+    image: lblod/harvesting-verenigingen-scraper-service:latest
     volumes:
       - ./data/files:/share
     environment:
@@ -158,7 +158,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: custom-import-service:latest
+    image: lblod/harvesting-verenigingen-import-service:latest
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
