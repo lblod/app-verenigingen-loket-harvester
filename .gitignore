@@ -11,3 +11,4 @@ docker-compose.override.yml
 .env
 /data/files/*
 .vscode
+*.pem
