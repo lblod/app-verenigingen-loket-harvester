@@ -16,8 +16,40 @@ defmodule Acl.UserGroups.Config do
     }
   end
 
+  defp can_access_verenigingen_data() do
+    %AccessByQuery{
+      vars: [ ],
+      query: "
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX muAccount: <http://mu.semte.ch/vocabularies/account/>
+        SELECT DISTINCT ?onlineAccount WHERE {
+          <SESSION_ID> muAccount:account ?onlineAccount.
+
+          ?onlineAccount  a foaf:OnlineAccount.
+
+          ?agent a foaf:Agent;
+            foaf:account ?onlineAccount.
+
+          <http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member ?agent;
+            foaf:name \"verenigingen\".
+        }"
+      }
+  end
+
   def user_groups do
     [
+        %GroupSpec{
+          name: "o-verenigingen-rwf",
+          useage: [:read, :write, :read_for_write],
+          access: can_access_verenigingen_data(),
+          graphs: [ %GraphSpec{
+                      graph: "http://mu.semte.ch/graphs/harvesting",
+                      constraint: %ResourceConstraint{
+                        resource_types: [
+                          "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
+                          "http://www.w3.org/ns/dcat#Dataset", # is needed in dump file
+                          "http://www.w3.org/ns/dcat#Distribution",
+                        ] } } ] },
       # Harvesting
       %GroupSpec{
         name: "harvesting",

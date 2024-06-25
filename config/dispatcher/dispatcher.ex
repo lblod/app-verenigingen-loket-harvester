@@ -59,6 +59,10 @@ defmodule Dispatcher do
   #################################################################
   # lblod-harvester verenigingen sync
   #################################################################
+  post "/sync/verenigingen/login/*path" do
+    Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/verenigingen/login/"
+  end
+
   get "/sync/verenigingen/files/*path", %{ layer: :api_services, accept: %{ json: true } } do
     Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/verenigingen/files/"
   end

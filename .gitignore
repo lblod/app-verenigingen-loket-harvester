@@ -12,3 +12,4 @@ docker-compose.override.yml
 /data/files/*
 .vscode
 *.pem
+*.override.*
