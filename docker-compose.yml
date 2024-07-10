@@ -9,20 +9,10 @@ x-logging: &default-logging
 services:
   identifier:
     image: semtech/mu-identifier:1.10.1
-    environment:
-      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: '[{"variables":[],"name":"public"},{"variables":[],"name":"harvesting"},{"variables":[],"name":"clean"}]'
-      DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
-      VIRTUAL_HOST: "harvester.andres-dev.s.redhost.be"
-      LETSENCRYPT_HOST: "harvester.andres-dev.s.redhost.be"
-      LETSENCRYPT_EMAIL: "andres.vergauwen@codifly.be"
-    networks:
-      - default
-      - proxy
     labels:
       - "logging=true"
     restart: always
     logging: *default-logging
-
   dispatcher:
     image: semtech/mu-dispatcher:2.1.0-beta.2
     volumes:
@@ -54,7 +44,6 @@ services:
       EMBER_AUTHENTICATION_ENABLED: "true"
       EMBER_BESLUITEN_HARVESTING_ENABLED: "true"
       EMBER_WORSHIP_HARVESTING_ENABLED: "false"
-
   database:
     image: semtech/mu-authorization:0.6.0-beta.8
     environment:
@@ -65,7 +54,6 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-
   virtuoso:
     image: redpencil/virtuoso:1.0.0
     environment:
@@ -140,7 +128,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_scraper:
-    image: custom-scraper-service:latest
+    image: lblod/harvesting-verenigingen-scraper-service:latest
     volumes:
       - ./data/files:/share
     environment:
@@ -158,7 +146,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: custom-import-service:latest
+    image: lblod/harvesting-verenigingen-import-service:latest
     environment:
       TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
@@ -324,8 +312,3 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-
-networks:
-  proxy:
-    external:
-      name: letsencrypt_default
