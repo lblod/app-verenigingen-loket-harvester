@@ -2,7 +2,7 @@
   "export": [
     {
       "_comment": "VERENIGINGEN",
-      "type": "https://data.vlaanderen.be/ns/FeitelijkeVerenigingen#FeitelijkeVereniging",
+      "type": "https://data.vlaanderen.be/ns/FeitelijkeVerenigingen#Vereniging",
       "graphsFilter": [
         "http://mu.semte.ch/graphs/harvesting"
       ],
