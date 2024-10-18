@@ -128,8 +128,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_scraper:
-    # image: lblod/harvesting-verenigingen-scraper-service:latest
-    image: wolfderechter/harvesting-verenigingen-scraper-service:latest
+    image: lblod/harvesting-verenigingen-scraper-service:latest
     volumes:
       - ./data/files:/share
     environment:
