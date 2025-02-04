@@ -128,9 +128,10 @@ services:
     restart: always
     logging: *default-logging
   harvest_scraper:
-    image: lblod/harvesting-verenigingen-scraper-service:latest
+    image: lblod/harvesting-verenigingen-scraper:1.0.3
     volumes:
       - ./data/files:/share
+      - ./config/harvest_scraper:/config
     environment:
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     labels:
