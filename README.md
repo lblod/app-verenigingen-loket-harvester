@@ -1,15 +1,13 @@
 # `app-verenigingen-loket-harvester`
 
-Mu-semtech stack for harvesting and processing Decisions from external sources.
-For the harvesting of Worship Decisions with focus on authentication, see
-[`app-lblod-harvester-worship`](https://github.com/lblod/app-lblod-harvester-worship).
+Mu-semtech stack for harvesting data produced from the verenigingen-register.
 
 ## List of Services
 
 See the `docker-compose.yml` file.
 
 ## Setup and startup
-
+### Locally
 To start this stack, clone this repository and start it using `docker compose`
 using the following example snippet.
 
@@ -19,20 +17,25 @@ cd app-verenigingen-loket-harvester
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
 ```
 
-It can take a while before everything is up and running. In case there is an
-error the first time you launch, just stopping and relaunching `docker compose`
-should resolve any issues:
-
-```bash
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml stop
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
-```
-
 After starting, you might still have to wait for all the services to boot up,
 and migrations to finish running. You can check this by inspecting the Docker
-logs and wait for things to settle down. Once the stack is up and running
+logs and wait for things to settle down.
+
+The first time you start the stack, you will need to create a local account to login.
+See section `Authentication`
+
+Once the stack is up and running
 without errors you can visit the frontend in a browser on
 `http://localhost:80`.
+
+It's not finished yet. If you want to start a harvesting job, you will need a lot of configuration so `harvest_scraper` can connect to the right end point.
+We advise to ask to someone or go to DEV/QA and take the configuration there. The following files should be looked into:
+  - `docker-compose.override.yml`
+  - `config/harvest_scraper/private_key_test.pem` should be there locally too.
+
+Once this is done, you can go and schedule a harvesting job in the frontend.
+Go to `scheduled jobs` choose `harvest and publish` and provide a 'dummy url'. No authentication needed.
+The job should eventually schedule.
 
 ## Setting up the delta-producers
 
@@ -121,6 +124,9 @@ By default this application requires authentication. You can generate a migratio
 ```
 
 This should generate a migration for you to add the user account.
+
+:warning: If running locally, create the migration file in `config/migrations/local`
+
 Afterwards make sure to restart the migration service to execute the migration
 
 ```sh
