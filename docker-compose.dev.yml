@@ -38,9 +38,6 @@ services:
   harvest_singleton-job:
     restart: "no"
 
-  harvest_check-url:
-    restart: "no"
-
   harvest_scraper:
     restart: "no"
 
