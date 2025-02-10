@@ -157,20 +157,6 @@ services:
     restart: always
     logging: *default-logging
 
-  harvest_validate:
-    image: lblod/harvesting-validator:0.3.2
-    environment:
-      TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      STRICT_MODE_FILTERING: "false"
-      LIMIT_SIZE: 1000
-    volumes:
-      - ./data/files:/share
-      - ./config/shacl:/config
-    labels:
-      - "logging=true"
-    restart: always
-    logging: *default-logging
-
   harvest_diff:
     image: lblod/harvesting-diff-service:0.2.2
     environment:

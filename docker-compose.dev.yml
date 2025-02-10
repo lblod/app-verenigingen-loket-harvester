@@ -47,10 +47,6 @@ services:
   harvest_import:
     restart: "no"
 
-  harvest_validate:
-    restart: "no"
-    environment:
-      LOGGING_LEVEL: "INFO" # optionals
   # harvest_compression:
   #   restart: "no"
   harvest_gen_delta:
