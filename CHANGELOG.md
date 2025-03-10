@@ -1,4 +1,11 @@
 # Changelog
+## Unreleased
+- Bump `migrations` to `v0.9.0`.
+- Add missing `logging` key to `migrations`. [DL-6490]
+### Deploy Notes
+```
+drc up -d migrations
+```
 ## 0.14.4 (2023-10-26)
 - bump dump file publisher
 ## 0.11.0 (2023-03-10)
