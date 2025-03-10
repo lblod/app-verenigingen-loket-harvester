@@ -73,12 +73,13 @@ services:
       - ./scripts/:/app/scripts/
     restart: "no"
   migrations:
-    image: semtech/mu-migrations-service:0.8.0
+    image: semtech/mu-migrations-service:0.9.0
     links:
       - virtuoso:database
     volumes:
       - ./config/migrations:/data/migrations
     restart: always
+    logging: *default-logging
     labels:
       - "logging=true"
 
