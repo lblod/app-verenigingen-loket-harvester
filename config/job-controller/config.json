@@ -3,26 +3,31 @@
     "tasksConfiguration": [
       {
         "currentOperation": null,
+        "comment": "NextOperation: performed by harvest_singleton-job",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/singleton-job",
         "nextIndex": "0"
       },
       {
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/singleton-job",
+        "comment": "NextOperation: performed by harvest_scraper",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/collecting",
         "nextIndex": "1"
       },
       {
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/collecting",
+        "comment": "NextOperation: performed by harvest_import",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/importing",
         "nextIndex": "2"
       },
       {
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/importing",
+        "comment": "NextOperation: performed by harvest_sameas",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/add-uuids",
         "nextIndex": "3"
       },
       {
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/add-uuids",
+        "comment": "NextOperation: performed by harvest_diff",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/diff",
         "nextIndex": "4"
       }
@@ -32,6 +37,7 @@
     "tasksConfiguration": [
       {
         "currentOperation": null,
+        "comment": "NextOperation: performed by harvest_sameas (yes sameas)",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/publishHarvestedTriples",
         "nextIndex": "0"
       }
@@ -41,36 +47,43 @@
     "tasksConfiguration": [
       {
         "currentOperation": null,
+        "comment": "NextOperation: performed by harvest_singleton-job",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/singleton-job",
         "nextIndex": "0"
       },
       {
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/singleton-job",
+        "comment": "NextOperation: performed by harvest_scraper",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/collecting",
         "nextIndex": "1"
       },
       {
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/collecting",
+        "comment": "NextOperation: performed by harvest_import",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/importing",
         "nextIndex": "2"
       },
       {
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/importing",
+        "comment": "NextOperation: performed by harvest_sameas",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/add-uuids",
         "nextIndex": "3"
       },
       {
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/add-uuids",
+        "comment": "NextOperation: performed by harvest_diff",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/diff",
         "nextIndex": "4"
       },
       {
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/diff",
+        "comment": "NextOperation: performed by harvest_sameas (yes sameas)",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/publishHarvestedTriples",
         "nextIndex": "5"
       },
       {
         "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/publishHarvestedTriples",
+        "comment": "NextOperation: performed by harvest_gen_delta",
         "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/generatingDelta",
         "nextIndex": "6"
       }
@@ -109,6 +122,15 @@
       {
         "currentOperation": null,
         "nextOperation": "http://redpencil.data.gift/id/jobs/concept/TaskOperation/deltas/deltaDumpFileCreation",
+        "nextIndex": "0"
+      }
+    ]
+  },
+  "http://redpencil.data.gift/id/jobs/concept/JobOperation/cleanup": {
+    "tasksConfiguration": [
+      {
+        "currentOperation": null,
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/cleaning",
         "nextIndex": "0"
       }
     ]
