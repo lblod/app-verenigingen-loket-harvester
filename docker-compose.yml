@@ -1,16 +1,16 @@
-version: '3.7'
+version: "3.7"
 
 x-logging: &default-logging
-  driver: 'json-file'
+  driver: "json-file"
   options:
-    max-size: '10m'
-    max-file: '3'
+    max-size: "10m"
+    max-file: "3"
 
 services:
   identifier:
     image: semtech/mu-identifier:1.10.1
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
   dispatcher:
@@ -18,7 +18,7 @@ services:
     volumes:
       - ./config/dispatcher:/config
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
   login:
@@ -26,52 +26,52 @@ services:
     links:
       - database:database
     environment:
-      USERS_GRAPH: 'http://mu.semte.ch/graphs/users'
-      SESSIONS_GRAPH: 'http://mu.semte.ch/graphs/sessions'
+      USERS_GRAPH: "http://mu.semte.ch/graphs/users"
+      SESSIONS_GRAPH: "http://mu.semte.ch/graphs/sessions"
     restart: always
     logging: *default-logging
     labels:
-      - 'logging=true'
+      - "logging=true"
   frontend:
     image: lblod/frontend-harvesting-self-service:2.2.0
     volumes:
       - ./config/frontend:/config
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
     environment:
-      EMBER_AUTHENTICATION_ENABLED: 'true'
-      EMBER_BESLUITEN_HARVESTING_ENABLED: 'true'
-      EMBER_WORSHIP_HARVESTING_ENABLED: 'false'
+      EMBER_AUTHENTICATION_ENABLED: "true"
+      EMBER_BESLUITEN_HARVESTING_ENABLED: "true"
+      EMBER_WORSHIP_HARVESTING_ENABLED: "false"
   database:
     image: semtech/mu-authorization:0.6.0-beta.8
     environment:
-      MU_SPARQL_ENDPOINT: 'http://virtuoso:8890/sparql'
+      MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
       - ./config/authorization:/config
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
   virtuoso:
     image: redpencil/virtuoso:1.0.0
     environment:
-      SPARQL_UPDATE: 'true'
-      DEFAULT_GRAPH: 'http://mu.semte.ch/graphs/public'
+      SPARQL_UPDATE: "true"
+      DEFAULT_GRAPH: "http://mu.semte.ch/graphs/public"
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
       - ./config/virtuoso/:/opt/virtuoso-scripts
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
   project-scripts:
     image: semtech/simple-script-store:1.0.0
     volumes:
       - ./scripts/:/app/scripts/
-    restart: 'no'
+    restart: "no"
   migrations:
     image: semtech/mu-migrations-service:0.9.0
     links:
@@ -81,7 +81,7 @@ services:
     restart: always
     logging: *default-logging
     labels:
-      - 'logging=true'
+      - "logging=true"
 
   cache:
     image: semtech/mu-cache:2.0.2
@@ -89,18 +89,18 @@ services:
       - resource:backend
     restart: always
     labels:
-      - 'logging=true'
+      - "logging=true"
     logging: *default-logging
 
   resource:
     image: semtech/mu-cl-resources:1.22.2
     environment:
-      CACHE_CLEAR_PATH: 'http://cache/.mu/clear-keys'
+      CACHE_CLEAR_PATH: "http://cache/.mu/clear-keys"
     volumes:
       - ./config/resources:/config
     restart: always
     labels:
-      - 'logging=true'
+      - "logging=true"
     logging: *default-logging
 
   deltanotifier:
@@ -108,24 +108,24 @@ services:
     volumes:
       - ./config/delta:/config
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
   file:
     image: semtech/mu-file-service:3.3.0
     environment:
-      MU_APPLICATION_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
+      MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
       - ./data/files:/share
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
 
   harvest_singleton-job:
     image: lblod/harvesting-singleton-job-service:1.0.0
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
   harvest_scraper:
@@ -134,9 +134,9 @@ services:
       - ./data/files:/share
       - ./config/harvest_scraper:/config
     environment:
-      DEFAULT_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
+      DEFAULT_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
   harvest_check-url:
@@ -144,72 +144,72 @@ services:
     volumes:
       - ./data/files:/share
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
   harvest_import:
     image: lblod/harvesting-verenigingen-import-service:latest
     environment:
-      TARGET_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
+      TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
       - ./data/files:/share
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
 
   harvest_validate:
     image: lblod/harvesting-validator:0.3.2
     environment:
-      TARGET_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
-      STRICT_MODE_FILTERING: 'false'
+      TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      STRICT_MODE_FILTERING: "false"
       LIMIT_SIZE: 1000
     volumes:
       - ./data/files:/share
       - ./config/shacl:/config
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
 
   harvest_diff:
     image: lblod/harvesting-diff-service:0.2.2
     environment:
-      TARGET_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
-      PUBLICATION_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
+      TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      PUBLICATION_GRAPH: "http://mu.semte.ch/graphs/harvesting"
       LIMIT_SIZE: 1000
     volumes:
       - ./data/files:/share
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
 
   harvest_sameas:
     image: lblod/import-with-sameas-service:4.3.1
     environment:
-      RENAME_DOMAIN: 'http://data.lblod.info/id/'
-      TARGET_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
-      HIGH_LOAD_DATABASE_ENDPOINT: 'http://virtuoso:8890/sparql'
+      RENAME_DOMAIN: "http://data.lblod.info/id/"
+      TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
       - ./config/same-as-service:/config
       - ./data/files:/share
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
   harvest_gen_delta:
     image: lblod/harvesting-generation-delta-service:0.1.1
     environment:
-      TARGET_DIRECTORY_DELTA_PATH: '/share/deltas/verenigingen'
-      BUFFER_SIZE: '1000'
-      PUBLISHER_URI: 'http://data.lblod.info/services/delta-production-json-diff-file-manager-verenigingen'
-      TARGET_PUBLISHER_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
-      HIGH_LOAD_DATABASE_ENDPOINT: 'http://virtuoso:8890/sparql'
+      TARGET_DIRECTORY_DELTA_PATH: "/share/deltas/verenigingen"
+      BUFFER_SIZE: "1000"
+      PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-verenigingen"
+      TARGET_PUBLISHER_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
       - ./data/files:/share
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
 
@@ -218,7 +218,7 @@ services:
     volumes:
       - ./config/job-controller:/config
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
 
@@ -229,32 +229,32 @@ services:
       # you can go back to previous behavior by commenting out env.var. below
       # CRON_HEALING_JOB: "*/5 * * * *"
       # DISABLE_DELTA: "true"
-      LOG_SPARQL_ALL: 'false'
-      DEBUG_AUTH_HEADERS: 'false'
+      LOG_SPARQL_ALL: "false"
+      DEBUG_AUTH_HEADERS: "false"
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
 
   deliver-email:
     image: redpencil/deliver-email-service:0.3.3
     environment:
-      MAILBOX_URI: 'http://data.lblod.info/id/mailboxes/1'
+      MAILBOX_URI: "http://data.lblod.info/id/mailboxes/1"
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
 
   error-alert:
     image: lblod/loket-error-alert-service:1.0.0
     environment:
-      EMAIL_FROM: 'noreply@lblod.info'
-      EMAIL_TO: 'noreply@lblod.info'
+      EMAIL_FROM: "noreply@lblod.info"
+      EMAIL_TO: "noreply@lblod.info"
 
     volumes:
       - ./config/error-alert:/config/
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
 
@@ -267,20 +267,20 @@ services:
     volumes:
       - ./config/delta-producer/report-generator:/config
     environment:
-      OUTBOX: 'http://data.lblod.info/id/mail-folders/2'
-      EMAIL_FROM: 'noreply@lblod.info'
-      EMAIL_TO: 'noreply@lblod.info'
-      APP_NAME: 'HARVESTER ASSOCIATIONS'
+      OUTBOX: "http://data.lblod.info/id/mail-folders/2"
+      EMAIL_FROM: "noreply@lblod.info"
+      EMAIL_TO: "noreply@lblod.info"
+      APP_NAME: "HARVESTER ASSOCIATIONS"
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
 
   delta-producer-dump-file-publisher:
     image: lblod/delta-producer-dump-file-publisher:0.10.3
     environment:
-      FILES_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
-      DCAT_DATASET_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
+      FILES_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      DCAT_DATASET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
       - ./config/delta-producer/dump-file-publisher:/config
       - ./data/files:/share
@@ -293,10 +293,10 @@ services:
   delta-producer-publication-graph-maintainer:
     image: lblod/delta-producer-publication-graph-maintainer:1.0.3
     environment:
-      SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: '404,500,503'
-      MAX_BODY_SIZE: '50mb'
-      PRETTY_PRINT_DIFF_JSON: 'true'
-      CONFIG_SERVICES_JSON_PATH: '/config/publication-graph-maintainer/config.json'
+      SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404,500,503"
+      MAX_BODY_SIZE: "50mb"
+      PRETTY_PRINT_DIFF_JSON: "true"
+      CONFIG_SERVICES_JSON_PATH: "/config/publication-graph-maintainer/config.json"
     volumes:
       - ./config/delta-producer:/config
       - ./data/files/:/share
@@ -311,10 +311,9 @@ services:
     volumes:
       - ./config/delta-producer/background-job-initiator/config.json:/config/config.json
     labels:
-      - 'logging=true'
+      - "logging=true"
     restart: always
     logging: *default-logging
-
   harvesting-cleaning:
     image: lblod/harvesting-cleanup-previous-jobs-service:0.2.1
     volumes:
