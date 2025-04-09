@@ -26,7 +26,12 @@
         "http://www.w3.org/ns/regorg#orgActivity",
         "http://www.w3.org/ns/org#hasMembership",
         "http://purl.org/pav/createdOn",
-        "http://purl.org/pav/lastUpdateOn"
+        "http://purl.org/pav/lastUpdateOn",
+        "https://data.lblod.info/ns/bron",
+        "https://data.lblod.info/ns/roepnaam",
+        "https://data.lblod.info/ns/isUitgeschrevenUitPubliekeDatastroom",
+        "https://data.lblod.info/ns/korteNaam",
+        "https://data.lblod.info/ns/einddatum"
       ],
       "healingOptions": {
         "http://data.europa.eu/eli/ontology#description": {
@@ -92,7 +97,9 @@
       "properties": [
         "http://mu.semte.ch/vocabularies/core/uuid",
         "http://www.w3.org/2004/02/skos/core#notation",
-        "https://data.vlaanderen.be/ns/generiek#gestructureerdeIdentificator"
+        "https://data.vlaanderen.be/ns/generiek#gestructureerdeIdentificator",
+        "https://data.lblod.info/ns/waarde",
+        "https://data.lblod.info/ns/bron"
       ],
       "healingOptions": {
         "http://data.europa.eu/eli/ontology#description": {
@@ -299,7 +306,7 @@
       ]
     },
     {
-      "_comment": "ACTIVITY",
+      "_comment": "CONCEPT",
       "type": "skos:Concept",
       "graphsFilter": [
         "http://mu.semte.ch/graphs/harvesting"
@@ -308,6 +315,19 @@
         "http://mu.semte.ch/vocabularies/core/uuid",
         "http://www.w3.org/2004/02/skos/core#notation",
         "http://www.w3.org/2004/02/skos/core#prefLabel"
+      ]
+    },
+    {
+      "_comment": "SITE",
+      "type": "http://www.w3.org/ns/org#Site",
+      "graphsFilter": [
+        "http://mu.semte.ch/graphs/harvesting"
+      ],
+      "properties": [
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "https://data.vlaanderen.be/ns/organisatie#bestaatUit",
+        "http://purl.org/dc/terms/description",
+        "http://data.lblod.info/vocabularies/erediensten/vestigingstype"
       ]
     }
   ]
