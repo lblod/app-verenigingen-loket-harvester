@@ -1,7 +1,6 @@
 {
   "verenigingen": {
     "deltaInterval": 10000,
-    "deltaPath": "/verenigingen/delta",
     "errorCreatorUri": "http://lblod.data.gift/services/delta-producer-publication-graph-maintainer-verenigingen",
     "errorGraph": "http://mu.semte.ch/graphs/jobs",
     "exportConfigPath": "/config/verenigingen/export.json",
