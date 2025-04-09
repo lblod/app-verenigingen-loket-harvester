@@ -45,11 +45,16 @@ Please note: this ingests the data into the database. If you want to publish it 
 
 ## Setting up the Delta-Producers
 
+
 To ensure that the app can share data, it is necessary to set up the producers. We recommend that you first ensure a significant dataset has been harvested. The more data that has been harvested before setting up the producers, the faster the consumers will retrieve their data.
 
 During its initial run, each producer performs a sync operation, which publishes the dataset as a `DCAT` dataset. This format can easily be ingested by consumers. After this initial sync, the producer switches to 'normal operation' mode, where it publishes delta files whenever new data is ingested.
 
 :warning: :warning: Please note: for this app, we do not provide live delta-streaming. This means that delta files are not published immediately as new data gets ingested. Instead, delta files are created only during 'healing mode'. This is a background job that runs according to a specific cron pattern to create the delta files.
+
+:warning: :warning: Please note, contrary to the most common setups, the publication graph is NOT in a separate publication store. Please take this into account when writing migrations.
+
+
 Check `./config/delta-producer/background-job-initiator/config.json` for the exact timings of the healing job.
 
 The reason why we do not provide live streaming is due to performance considerations. This has led us to skip `mu-authorization` and update Virtuoso directly.
