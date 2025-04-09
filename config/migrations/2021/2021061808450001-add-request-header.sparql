@@ -6,7 +6,17 @@ INSERT DATA {
   <http://data.lblod.info/request-headers/accept/text/html> a http:RequestHeader;
                                                               http:fieldValue "text/html";
                                                               http:fieldName "Accept";
-                                                              http:hdrName <http://www.w3.org/2011/http-headers#accept>.  
+                                                              http:hdrName <http://www.w3.org/2011/http-headers#accept>.
   }
 }
-    
+
+;
+
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/jobs> {
+  <http://data.lblod.info/request-headers/accept/text/html> a http:RequestHeader;
+                                                              http:fieldValue "text/html";
+                                                              http:fieldName "Accept";
+                                                              http:hdrName <http://www.w3.org/2011/http-headers#accept>.
+  }
+}
