@@ -113,7 +113,7 @@ services:
   file:
     image: semtech/mu-file-service:3.3.0
     environment:
-      MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      MU_APPLICATION_GRAPH: "http://mu.semte.ch/graphs/jobs"
     volumes:
       - ./data/files:/share
     labels:
@@ -133,7 +133,7 @@ services:
       - ./data/files:/share
       - ./config/harvest_scraper:/config
     environment:
-      DEFAULT_GRAPH: "http://mu.semte.ch/graphs/harvesting"
+      DEFAULT_GRAPH: "http://mu.semte.ch/graphs/jobs"
     labels:
       - "logging=true"
     restart: always
@@ -141,48 +141,7 @@ services:
   harvest_import:
     image: lblod/harvesting-verenigingen-import-service:0.10.2
     environment:
-      TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-    volumes:
-      - ./data/files:/share
-    labels:
-      - "logging=true"
-    restart: always
-    logging: *default-logging
-
-  harvest_diff:
-    image: lblod/harvesting-diff-service:feature-diff-only-latest
-    environment:
-      TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      PUBLICATION_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      LIMIT_SIZE: 1000
-    volumes:
-      - ./data/files:/share
-    labels:
-      - "logging=true"
-    restart: always
-    logging: *default-logging
-
-  harvest_sameas:
-    image: lblod/import-with-sameas-service:4.3.1
-    environment:
-      RENAME_DOMAIN: "http://data.lblod.info/id/"
-      TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
-    volumes:
-      - ./config/same-as-service:/config
-      - ./data/files:/share
-    labels:
-      - "logging=true"
-    restart: always
-    logging: *default-logging
-  harvest_gen_delta:
-    image: lblod/harvesting-generation-delta-service:0.1.1
-    environment:
-      TARGET_DIRECTORY_DELTA_PATH: "/share/deltas/verenigingen"
-      BUFFER_SIZE: "1000"
-      PUBLISHER_URI: "http://data.lblod.info/services/delta-production-json-diff-file-manager-verenigingen"
-      TARGET_PUBLISHER_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      HIGH_LOAD_DATABASE_ENDPOINT: "http://virtuoso:8890/sparql"
+      IMPORT_TARGET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
       - ./data/files:/share
     labels:
@@ -191,7 +150,7 @@ services:
     logging: *default-logging
 
   job-controller:
-    image: lblod/job-controller-service:1.0.0
+    image: lblod/job-controller-service:1.1.0
     volumes:
       - ./config/job-controller:/config
     labels:
@@ -200,7 +159,7 @@ services:
     logging: *default-logging
 
   scheduled-job-controller:
-    image: lblod/scheduled-job-controller-service:1.0.3
+    image: lblod/scheduled-job-controller-service:1.1.0
     environment:
       # NOTE: if the delta-events prove to inaccurate,
       # you can go back to previous behavior by commenting out env.var. below
@@ -255,9 +214,6 @@ services:
 
   delta-producer-dump-file-publisher:
     image: lblod/delta-producer-dump-file-publisher:0.10.3
-    environment:
-      FILES_GRAPH: "http://mu.semte.ch/graphs/harvesting"
-      DCAT_DATASET_GRAPH: "http://mu.semte.ch/graphs/harvesting"
     volumes:
       - ./config/delta-producer/dump-file-publisher:/config
       - ./data/files:/share
@@ -268,7 +224,7 @@ services:
     logging: *default-logging
 
   delta-producer-publication-graph-maintainer:
-    image: lblod/delta-producer-publication-graph-maintainer:1.0.3
+    image: lblod/delta-producer-publication-graph-maintainer:1.4.0
     environment:
       SUDO_QUERY_RETRY_FOR_HTTP_STATUS_CODES: "404,500,503"
       MAX_BODY_SIZE: "50mb"
