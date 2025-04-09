@@ -1,7 +1,7 @@
 [
   {
     "name": "verenigingen",
-    "jobsGraph": "http://mu.semte.ch/graphs/harvesting",
+    "jobsGraph": "http://mu.semte.ch/graphs/jobs",
     "dumpFileCreationJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/verenigingen",
     "initialPublicationGraphSyncJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/verenigingen",
     "healingJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/healingOperation/verenigingen",
