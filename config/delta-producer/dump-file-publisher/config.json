@@ -1,14 +1,18 @@
 {
   "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/verenigingen" : {
     "dcatDataSetSubject": "http://data.lblod.info/datasets/delta-producer/dumps/lblod-harvester/VerenigingenCacheGraphDump",
-    "targetGraph": "http://mu.semte.ch/graphs/harvesting",
+    "targetGraph": "http://mu.semte.ch/graphs/harvesting/publicationGraph",
+    "targetDcatGraph": "http://mu.semte.ch/graphs/jobs",
+    "targetFilesGraph": "http://mu.semte.ch/graphs/jobs",
     "fileBaseName": "dump-verenigingen",
     "publicationGraphEndpoint": "http://virtuoso:8890/sparql",
     "cleanupOldDumps": true
   },
   "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/initialPublicationGraphSyncing/verenigingen" : {
     "dcatDataSetSubject": "http://data.lblod.info/datasets/delta-producer/dumps/lblod-harvester/VerenigingenCacheGraphDump",
-    "targetGraph": "http://mu.semte.ch/graphs/harvesting",
+    "targetGraph": "http://mu.semte.ch/graphs/harvesting/publicationGraph",
+    "targetDcatGraph": "http://mu.semte.ch/graphs/jobs",
+    "targetFilesGraph": "http://mu.semte.ch/graphs/jobs",
     "fileBaseName": "dump-verenigingen",
     "publicationGraphEndpoint": "http://virtuoso:8890/sparql",
     "cleanupOldDumps": true

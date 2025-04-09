@@ -44,17 +44,6 @@ services:
   harvest_import:
     restart: "no"
 
-  # harvest_compression:
-  #   restart: "no"
-  harvest_gen_delta:
-    restart: "no"
-
-  harvest_diff:
-    restart: "no"
-
-  harvest_sameas:
-    restart: "no"
-
   job-controller:
     restart: "no"
 
