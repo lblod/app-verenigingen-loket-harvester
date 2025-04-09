@@ -43,7 +43,7 @@ defmodule Acl.UserGroups.Config do
           useage: [:read, :write, :read_for_write],
           access: can_access_verenigingen_data(),
           graphs: [ %GraphSpec{
-                      graph: "http://mu.semte.ch/graphs/harvesting",
+                      graph: "http://mu.semte.ch/graphs/jobs",
                       constraint: %ResourceConstraint{
                         resource_types: [
                           "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
@@ -57,7 +57,7 @@ defmodule Acl.UserGroups.Config do
         access: logged_in_user(),
         # access: %AlwaysAccessible{},
         graphs: [ %GraphSpec{
-                    graph: "http://mu.semte.ch/graphs/harvesting",
+                    graph: "http://mu.semte.ch/graphs/jobs",
                     constraint: %ResourceConstraint{
                       resource_types: [
                         "http://redpencil.data.gift/vocabularies/tasks/Task",
@@ -94,7 +94,7 @@ defmodule Acl.UserGroups.Config do
         access: %AlwaysAccessible{},
         graphs: [
           %GraphSpec{
-            graph: "http://mu.semte.ch/graphs/harvesting",
+            graph: "http://mu.semte.ch/graphs/jobs",
             constraint: %ResourceConstraint{
               resource_types: [
                 "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject",
