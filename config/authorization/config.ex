@@ -45,7 +45,7 @@ defmodule Acl.UserGroups.Config do
       %GroupSpec{
         name: "harvesting",
         useage: [:write, :read_for_write, :read],
-        access: logged_in_user(),
+        access: can_access_verenigingen_data(),
         # access: %AlwaysAccessible{},
         graphs: [ %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/jobs",
