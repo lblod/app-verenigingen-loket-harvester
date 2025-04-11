@@ -6,15 +6,6 @@ alias Acl.GroupSpec.GraphCleanup, as: GraphCleanup
 alias Acl.Accessibility.ByQuery, as: AccessByQuery
 
 defmodule Acl.UserGroups.Config do
-  defp logged_in_user() do
-    %AccessByQuery{
-      vars: [],
-      query: "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
-      SELECT DISTINCT ?account WHERE {
-      <SESSION_ID> session:account ?account.
-      }"
-    }
-  end
 
   defp can_access_verenigingen_data() do
     %AccessByQuery{
