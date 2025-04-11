@@ -6,15 +6,6 @@ alias Acl.GroupSpec.GraphCleanup, as: GraphCleanup
 alias Acl.Accessibility.ByQuery, as: AccessByQuery
 
 defmodule Acl.UserGroups.Config do
-  defp logged_in_user() do
-    %AccessByQuery{
-      vars: [],
-      query: "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
-      SELECT DISTINCT ?account WHERE {
-      <SESSION_ID> session:account ?account.
-      }"
-    }
-  end
 
   defp can_access_verenigingen_data() do
     %AccessByQuery{
@@ -23,14 +14,11 @@ defmodule Acl.UserGroups.Config do
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
         PREFIX muAccount: <http://mu.semte.ch/vocabularies/account/>
         SELECT DISTINCT ?onlineAccount WHERE {
-          <SESSION_ID> muAccount:account ?onlineAccount.
+          <SESSION_ID> <http://mu.semte.ch/vocabularies/session/account> ?onlineAccount.
 
-          ?onlineAccount  a foaf:OnlineAccount.
+          ?onlineAccount a foaf:OnlineAccount.
 
-          ?agent a foaf:Agent;
-            foaf:account ?onlineAccount.
-
-          <http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member ?agent;
+          <http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member ?onlineAccount;
             foaf:name \"verenigingen\".
         }"
       }
@@ -47,6 +35,7 @@ defmodule Acl.UserGroups.Config do
                       constraint: %ResourceConstraint{
                         resource_types: [
                           "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
+                          "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject",
                           "http://www.w3.org/ns/dcat#Dataset", # is needed in dump file
                           "http://www.w3.org/ns/dcat#Distribution",
                         ] } } ] },
@@ -54,7 +43,7 @@ defmodule Acl.UserGroups.Config do
       %GroupSpec{
         name: "harvesting",
         useage: [:write, :read_for_write, :read],
-        access: logged_in_user(),
+        access: can_access_verenigingen_data(),
         # access: %AlwaysAccessible{},
         graphs: [ %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/jobs",
@@ -84,26 +73,6 @@ defmodule Acl.UserGroups.Config do
                         "https://www.w3.org/2019/wot/security#OAuth2SecurityScheme"
                       ]
                     } } ] },
-
-      # Allow access to (public) harvesting config for delta consumers
-      # Note this allows access to all data to data in the harvesting graph and not just the listed types
-      # being able to read this is consider OK for, but we should set up authenticated delta's later on
-      %GroupSpec{
-        name: "harvesting-public",
-        useage: [:read],
-        access: %AlwaysAccessible{},
-        graphs: [
-          %GraphSpec{
-            graph: "http://mu.semte.ch/graphs/jobs",
-            constraint: %ResourceConstraint{
-              resource_types: [
-                "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject",
-                "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
-              ]
-            }
-          }
-        ]
-      },
       # CLEANUP
       #
       %GraphCleanup{
