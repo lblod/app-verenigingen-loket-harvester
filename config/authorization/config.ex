@@ -14,14 +14,11 @@ defmodule Acl.UserGroups.Config do
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
         PREFIX muAccount: <http://mu.semte.ch/vocabularies/account/>
         SELECT DISTINCT ?onlineAccount WHERE {
-          <SESSION_ID> muAccount:account ?onlineAccount.
+          <SESSION_ID> <http://mu.semte.ch/vocabularies/session/account> ?onlineAccount.
 
-          ?onlineAccount  a foaf:OnlineAccount.
+          ?onlineAccount a foaf:OnlineAccount.
 
-          ?agent a foaf:Agent;
-            foaf:account ?onlineAccount.
-
-          <http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member ?agent;
+          <http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member ?onlineAccount;
             foaf:name \"verenigingen\".
         }"
       }
