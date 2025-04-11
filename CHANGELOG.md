@@ -1,7 +1,8 @@
 # Changelog
 ## Unreleased (2025-04-09)
 - Significant rework of the harvester.
-- Bump virtuoso 
+- Bump virtuoso
+- Re-wire authorization config
 ### deploy instructions
 Since significant changes, we'll go for a full wipe.
 ###3 For dev/qa/production
