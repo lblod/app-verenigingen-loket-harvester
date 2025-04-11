@@ -7,6 +7,9 @@ alias Acl.Accessibility.ByQuery, as: AccessByQuery
 
 defmodule Acl.UserGroups.Config do
 
+  # Note: the fact that we have two ?accountPredicates, is
+  # the mistake of delta-producer-publication-graph-maintainer
+  # which uses the wrong model. This needs to be fixed one day.
   defp can_access_verenigingen_data() do
     %AccessByQuery{
       vars: [ ],
@@ -14,12 +17,28 @@ defmodule Acl.UserGroups.Config do
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
         PREFIX muAccount: <http://mu.semte.ch/vocabularies/account/>
         SELECT DISTINCT ?onlineAccount WHERE {
-          <SESSION_ID> <http://mu.semte.ch/vocabularies/session/account> ?onlineAccount.
+
+          VALUES ?accountPredicate {
+            <http://mu.semte.ch/vocabularies/session/account>
+            <http://mu.semte.ch/vocabularies/account/account>
+          }
+
+          <SESSION_ID> ?accountPredicate ?onlineAccount.
 
           ?onlineAccount a foaf:OnlineAccount.
 
-          <http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member ?onlineAccount;
-            foaf:name \"verenigingen\".
+          ?agent a foaf:Agent;
+            foaf:account ?onlineAccount.
+
+          {
+            <http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member ?onlineAccount;
+              foaf:name \"verenigingen\".
+
+          } UNION {
+
+            <http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member ?agent;
+              foaf:name \"verenigingen\".
+          }
         }"
       }
   end
