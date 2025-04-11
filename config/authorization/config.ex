@@ -27,8 +27,18 @@ defmodule Acl.UserGroups.Config do
 
           ?onlineAccount a foaf:OnlineAccount.
 
-          <http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member ?onlineAccount;
-            foaf:name \"verenigingen\".
+          ?agent a foaf:Agent;
+            foaf:account ?onlineAccount.
+
+          {
+            <http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member ?onlineAccount;
+              foaf:name \"verenigingen\".
+
+          } UNION {
+
+            <http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member ?agent;
+              foaf:name \"verenigingen\".
+          }
         }"
       }
   end
