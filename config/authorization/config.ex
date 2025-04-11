@@ -38,6 +38,7 @@ defmodule Acl.UserGroups.Config do
                       constraint: %ResourceConstraint{
                         resource_types: [
                           "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
+                          "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#RemoteDataObject",
                           "http://www.w3.org/ns/dcat#Dataset", # is needed in dump file
                           "http://www.w3.org/ns/dcat#Distribution",
                         ] } } ] },
