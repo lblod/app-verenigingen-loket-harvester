@@ -1,17 +1,19 @@
 # `app-verenigingen-loket-harvester`
 
-Mu-semtech stack for harvesting and processing Decisions from external sources.
-For the harvesting of Worship Decisions with focus on authentication, see
-[`app-lblod-harvester-worship`](https://github.com/lblod/app-lblod-harvester-worship).
+Mu-semtech stack for harvesting data produced from the verenigingen-register.
+
+## High-Level Overview
+A scheduled job periodically retrieves datasets from the Verenigingen register and stores them in the database.
+The responsibility of making this data available to consumers is delegated to the delta-producer, which handles publishing and synchronization.
 
 ## List of Services
 
 See the `docker-compose.yml` file.
 
-## Setup and startup
-
+## Setup and Startup
+### Locally
 To start this stack, clone this repository and start it using `docker compose`
-using the following example snippet.
+with the following example snippet:
 
 ```bash
 git clone git@github.com:lblod/app-verenigingen-loket-harvester.git
@@ -19,78 +21,87 @@ cd app-verenigingen-loket-harvester
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
 ```
 
-It can take a while before everything is up and running. In case there is an
-error the first time you launch, just stopping and relaunching `docker compose`
-should resolve any issues:
-
-```bash
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml stop
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
-```
-
 After starting, you might still have to wait for all the services to boot up,
-and migrations to finish running. You can check this by inspecting the Docker
-logs and wait for things to settle down. Once the stack is up and running
-without errors you can visit the frontend in a browser on
-`http://localhost:80`.
+and for migrations to finish running. You can check this by inspecting the Docker
+logs and waiting for things to settle down.
 
-## Setting up the delta-producers
+The first time you start the stack, you will need to create a local account to log in.
+See the `Authentication` section.
+
+Once the stack is up and running
+without errors, you can visit the frontend in a browser at
+`http://localhost`.
+
+It's not finished yet. If you want to start a harvesting job, you will need a lot of configuration so `harvest_scraper` can connect to the right endpoint.
+We advise you to ask someone or go to DEV/QA and copy the configuration from there. The following files should be reviewed:
+  - `docker-compose.override.yml`
+  - `config/harvest_scraper/private_key_test.pem` should also be present locally.
+
+Once this is done, you can schedule a harvesting job in the frontend.
+Go to `scheduled jobs`, choose `harvest url`, and provide a dummy URL. No authentication is needed.
+The job should eventually be scheduled.
+
+Please note: this ingests the data into the database. If you want to publish it for external consumers, that's another job. Please check the `delta-producers` section.
+
+## Setting up the Delta-Producers
+
 
 To ensure that the app can share data, it is necessary to set up the producers. We recommend that you first ensure a significant dataset has been harvested. The more data that has been harvested before setting up the producers, the faster the consumers will retrieve their data.
 
 During its initial run, each producer performs a sync operation, which publishes the dataset as a `DCAT` dataset. This format can easily be ingested by consumers. After this initial sync, the producer switches to 'normal operation' mode, where it publishes delta files whenever new data is ingested.
 
-Please note, for this app, we do not provide live delta-streaming. This means that delta files are not published immediately as new data gets ingested. Instead, delta files are created only during 'healing mode'. This is a background job that runs according to a specific cron pattern to create the delta files.
-Check `./config/delta-producer/background-job-initiator/config.json` for the exact timings of the healing-job.
+:warning: :warning: Please note: for this app, we do not provide live delta-streaming. This means that delta files are not published immediately as new data gets ingested. Instead, delta files are created only during 'healing mode'. This is a background job that runs according to a specific cron pattern to create the delta files.
 
-The reason why we do not provide live streaming is due to performance considerations. It has pushed us towards skipping `mu-authorization` and updating Virtuoso directly.
+:warning: :warning: Please note, contrary to the most common setups, the publication graph is NOT in a separate publication store. Please take this into account when writing migrations.
 
-### Setting up producer verenigingen
 
-0. Only in case you are _flushing and restarting_ from scratch, ensure in `./config/delta-producer/background-job-initiator/config.json`
+Check `./config/delta-producer/background-job-initiator/config.json` for the exact timings of the healing job.
+
+The reason why we do not provide live streaming is due to performance considerations. This has led us to skip `mu-authorization` and update Virtuoso directly.
+
+### Setting up Producer Verenigingen
+
+0. Only if you are _flushing and restarting_ from scratch, ensure in `./config/delta-producer/background-job-initiator/config.json`:
 
    ```json
       [
         {
           "name": "verenigingen",
-          # (...) other config
+          // (...) other config
 
-          "startInitialSync": false, # changed from 'true' to 'false'
+          "startInitialSync": false, // changed from 'true' to 'false'
 
-          # (...) other config
-
+          // (...) other config
         }
       ]
    ```
 
-   - And also ensure some data has been harvested before starting the initial sync.
+   - Also ensure that some data has been harvested before starting the initial sync.
 
 1. Make sure the app is up and running, and the migrations have run.
-2. In `./config/delta-producer/background-job-initiator/config.json` file, make sure the following
-   configuration is changed:
+2. In the `./config/delta-producer/background-job-initiator/config.json` file, update the following configuration:
 
    ```json
       [
         {
           "name": "verenigingen",
-          # (...) other config
+          // (...) other config
 
-          "startInitialSync": true, # changed from 'false' to 'true'
+          "startInitialSync": true, // changed from 'false' to 'true'
 
-          # (...) other config
-
+          // (...) other config
         }
       ]
    ```
 
-3. Restart the services: `drc restart delta-producer-background-jobs-initiator`
-4. You can follow the status of the job, through the dashboard frontend.
+3. Restart the service: `drc restart delta-producer-background-jobs-initiator`
+4. You can follow the status of the job through the dashboard frontend.
 
-### Configuring verenigingen dumps
+### Configuring Verenigingen Dumps
 
-Dumps are used by consumers as a snapshot to start from, this is faster than consuming all delta's. They are generated by the [delta-producer-dump-file-publisher](https://github.com/lblod/delta-producer-dump-file-publisher) which is started by a task created by the [delta-producer-background-jobs-initiator](https://github.com/lblod/delta-producer-background-jobs-initiator). The necessary config is already present in this repository, but you need to enable them by updating the config. It's recommended to set up dumps on a regular interval, preferably at a time slot when no harvesting is happening.
+Dumps are used by consumers as a snapshot to start from. This is faster than consuming all deltas. They are generated by the [delta-producer-dump-file-publisher](https://github.com/lblod/delta-producer-dump-file-publisher), which is triggered by a task created by the [delta-producer-background-jobs-initiator](https://github.com/lblod/delta-producer-background-jobs-initiator). The necessary config is already present in this repository, but you need to enable it by updating the config. It's recommended to set up dumps on a regular interval, preferably at a time when no harvesting is happening.
 
-To enable dumps, edit `./config/delta-producer/background-job-initiator/config.json` enable creation by setting `disableDumpFileCreation` to `false` and set the cron pattern you need:
+To enable dumps, edit `./config/delta-producer/background-job-initiator/config.json`, set `disableDumpFileCreation` to `false`, and set the cron pattern as needed:
 
 ```diff
      "dumpFileCreationJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/deltaDumpFileCreation/verenigingen",
@@ -104,7 +115,7 @@ To enable dumps, edit `./config/delta-producer/background-job-initiator/config.j
    }
 ```
 
-Make sure to restart the background-job-initiator service after changing the config.
+Make sure to restart the `background-job-initiator` service after changing the config.
 
 Dumps will be generated in [data/files/delta-producer-dumps](data/files/delta-producer-dumps/).
 
@@ -114,14 +125,17 @@ docker compose restart delta-producer-background-jobs-initiator
 
 ### Authentication
 
-By default this application requires authentication. You can generate a migration to add a user account by using [mu-cli](https://github.com/mu-semtech/mu-cli) and running the included project script.
+By default, this application requires authentication. You can generate a migration to add a user account by using [mu-cli](https://github.com/mu-semtech/mu-cli) and running the included project script:
 
 ```sh
- mu script project-scripts generate-account
+mu script project-scripts generate-account
 ```
 
-This should generate a migration for you to add the user account.
-Afterwards make sure to restart the migration service to execute the migration
+This will generate a migration for you to add the user account.
+
+⚠️ If running locally, create the migration file in `config/migrations/local`.
+
+Afterwards, make sure to restart the migration service to execute the migration:
 
 ```sh
 docker compose restart migrations
@@ -130,7 +144,7 @@ docker compose restart migrations
 If you wish to run this application without authentication, this is also possible. You'll need to make the following changes:
 
 ```diff
-#config/authorization/config.ex
+# config/authorization/config.ex
        %GroupSpec{
          name: "harvesting",
          useage: [:write, :read_for_write, :read],
@@ -139,36 +153,36 @@ If you wish to run this application without authentication, this is also possibl
 ```
 
 ```diff
-#docker-compose.yml
+# docker-compose.yml
   identifier:
     environment:
 -      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: '[{"variables":[],"name":"public"},{"variables":[],"name":"clean"}]'
-+      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: '[{"variables":[],"name":"public"},{"variables":[],"name":"harvesting"}, {"variables":[],"name":"clean"}]'
++      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: '[{"variables":[],"name":"public"},{"variables":[],"name":"harvesting"},{"variables":[],"name":"clean"}]'
   frontend:
-    environment
+    environment:
 -     EMBER_AUTHENTICATION_ENABLED: "true"
 +     EMBER_AUTHENTICATION_ENABLED: "false"
 ```
 
-### Triggering the healing-job manually
+### Triggering the Healing Job Manually
 
-In some cases, you might want to trigger the healing job manually.
+In some cases, you might want to trigger the healing job manually:
 
-```
+```sh
 drc exec delta-producer-background-jobs-initiator wget --post-data='' http://localhost/verenigingen/healing-jobs
 ```
 
-### Cleaning up delta related background jobs manually
+### Cleaning up Delta-Related Background Jobs Manually
 
-Trigger the debug endpoints in [delta-producer-background-jobs-initiator](https://github.com/lblod/delta-producer-background-jobs-initiator)
+Trigger the debug endpoints in the [delta-producer-background-jobs-initiator](https://github.com/lblod/delta-producer-background-jobs-initiator)
 
-## Additional notes
+## Additional Notes
 
 ### Performance
 
-The default Virtuoso settings might be too weak if you need to ingest the
-production data. There is a better config for this that you can use in your
-`docker-compose.override.yml`
+The default Virtuoso settings might be too weak if you need to ingest
+production data. A better config is available and can be used in your
+`docker-compose.override.yml`:
 
 ```yaml
 virtuoso:
@@ -180,11 +194,9 @@ virtuoso:
 
 ### `delta-producer-report-generator`
 
-Not all required parameters are provided, since these are deploy specific, see
-[the delta-producer-report-generator
-repository](https://github.com/lblod/delta-producer-report-generator).
+Not all required parameters are provided, as these are deployment-specific. See the
+[delta-producer-report-generator repository](https://github.com/lblod/delta-producer-report-generator).
 
 ### `deliver-email-service`
 
-Should have credentials provided, see [the deliver-email-service
-repository](https://github.com/redpencilio/deliver-email-service).
+Credentials must be provided. See the [deliver-email-service repository](https://github.com/redpencilio/deliver-email-service).

@@ -2,6 +2,8 @@ version: "3.7"
 
 services:
   identifier:
+    ports:
+      - "80:80"
     restart: "no"
 
   dispatcher:
@@ -14,6 +16,8 @@ services:
     restart: "no"
 
   virtuoso:
+    ports:
+      - "8890:8890"
     restart: "no"
 
   migrations:
@@ -34,28 +38,10 @@ services:
   harvest_singleton-job:
     restart: "no"
 
-  harvest_check-url:
-    restart: "no"
-
   harvest_scraper:
     restart: "no"
 
   harvest_import:
-    restart: "no"
-
-  harvest_validate:
-    restart: "no"
-    environment:
-      LOGGING_LEVEL: "INFO" # optionals
-  # harvest_compression:
-  #   restart: "no"
-  harvest_gen_delta:
-    restart: "no"
-
-  harvest_diff:
-    restart: "no"
-
-  harvest_sameas:
     restart: "no"
 
   job-controller:
