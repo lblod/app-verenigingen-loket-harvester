@@ -66,6 +66,8 @@ INSERT DATA {
                    account:status <http://mu.semte.ch/vocabularies/account/status/active> ;
                    dcterms:created "#{now}"^^xsd:dateTime ;
                    dcterms:modified "#{now}"^^xsd:dateTime .
+
+     <http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member accounts:#{account_uuid}.
     }
 }
 )

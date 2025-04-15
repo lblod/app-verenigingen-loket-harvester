@@ -76,132 +76,6 @@ export default [
       ignoreFromSelf: true
     }
   },
-  // {
-  //   match: {
-  //     predicate: {
-  //       type: 'uri',
-  //       value: 'http://www.w3.org/ns/adms#status',
-  //     },
-  //     object: {
-  //       type: 'uri',
-  //       value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled',
-  //     },
-  //   },
-  //   callback: {
-  //     method: 'POST',
-  //     url: 'http://harvest_compression/delta',
-  //   },
-  //   options: {
-  //     resourceFormat: 'v0.0.1',
-  //     gracePeriod: 1000,
-  //     ignoreFromSelf: true,
-  //   },
-  // },
-  {
-    match: {
-      predicate: {
-        type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
-      },
-      object: {
-        type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
-    },
-    callback: {
-      method: 'POST',
-      url: 'http://harvest_validate/delta'
-    },
-    options: {
-      resourceFormat: 'v0.0.1',
-      gracePeriod: 1000,
-      ignoreFromSelf: true
-    }
-  },
-  {
-    match: {
-      predicate: {
-        type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
-      },
-      object: {
-        type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
-    },
-    callback: {
-      method: 'POST',
-      url: 'http://harvest_gen_delta/delta'
-    },
-    options: {
-      resourceFormat: 'v0.0.1',
-      gracePeriod: 1000,
-      ignoreFromSelf: true
-    }
-  },
-  {
-    match: {
-      predicate: {
-        type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
-      },
-      object: {
-        type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
-    },
-    callback: {
-      method: 'POST',
-      url: 'http://harvest_diff/delta'
-    },
-    options: {
-      resourceFormat: 'v0.0.1',
-      gracePeriod: 1000,
-      ignoreFromSelf: true
-    }
-  },
-  {
-    match: {
-      predicate: {
-        type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
-      },
-      object: {
-        type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
-    },
-    callback: {
-      method: 'POST',
-      url: 'http://harvest_check-url/delta'
-    },
-    options: {
-      resourceFormat: 'v0.0.1',
-      gracePeriod: 1000,
-      ignoreFromSelf: true
-    }
-  },
-  {
-    match: {
-      predicate: {
-        type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
-      },
-      object: {
-        type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
-    },
-    callback: {
-      method: 'POST',
-      url: 'http://harvest_sameas/delta'
-    },
-    options: {
-      resourceFormat: 'v0.0.1',
-      gracePeriod: 1000,
-      ignoreFromSelf: true
-    }
-  },
   {
     match: {
       predicate: {
@@ -285,30 +159,17 @@ export default [
   },
   {
     match: {
-      graph: {
+      predicate: {
         type: 'uri',
-        value: 'http://mu.semte.ch/graphs/public'
+        value: 'http://www.w3.org/ns/adms#status'
+      },
+      object: {
+        type: 'uri',
+        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
       }
     },
     callback: {
-      url: 'http://delta-producer-publication-graph-maintainer/verenigingen/delta',
-      method: 'POST'
-    },
-    options: {
-      resourceFormat: 'v0.0.1',
-      gracePeriod: 1000,
-      ignoreFromSelf: true
-    }
-  },
-  {
-    match: {
-      graph: {
-        type: 'uri',
-        value: 'http://mu.semte.ch/graphs/harvesting'
-      }
-    },
-    callback: {
-      url: 'http://delta-producer-publication-graph-maintainer/verenigingen/delta',
+      url: 'http://delta-producer-publication-graph-maintainer/delta',
       method: 'POST'
     },
     options: {
