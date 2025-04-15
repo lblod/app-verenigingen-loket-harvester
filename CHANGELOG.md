@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased
+## 1.1.0
 - Bump `migrations` to `v0.9.0`.
 - Add missing `logging` key to `migrations`. [DL-6490]
 - Significant rework of the harvester.
