@@ -6,6 +6,10 @@
 - Bump virtuoso
 - Re-wire authorization config
 ### Deploy Notes
+:warning: If you didn't use `mu-script` to generate an old account, it might not work anymore, because re-write of `mu-auth`.
+Ensure there is a similar triple linked to the account `<http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member accounts:123.`.
+Or you can generate a new account, check instructions `README.md`
+
 Since significant changes, we'll go for a full wipe.
 ### For dev/qa/production
 
