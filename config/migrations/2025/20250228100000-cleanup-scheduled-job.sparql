@@ -1,0 +1,27 @@
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/harvesting> {
+    <http://redpencil.data.gift/id/scheduled-job/c2ffa700-e462-46b4-abf5-103d1a1854d0>
+      a <http://vocab.deri.ie/cogs#ScheduledJob>;
+      <http://purl.org/dc/terms/created> "2025-02-26T15:06:01.294Z";
+      <http://purl.org/dc/terms/modified> "2025-02-26T15:06:01.294Z";
+      <http://redpencil.data.gift/vocabularies/tasks/operation> <http://redpencil.data.gift/id/jobs/concept/JobOperation/cleanup>;
+      <http://redpencil.data.gift/vocabularies/tasks/schedule> <http://redpencil.data.gift/id/cron-schedule/daea6070-935e-4df8-9de8-724321ad881a>;
+      <http://mu.semte.ch/vocabularies/core/uuid> "c2ffa700-e462-46b4-abf5-103d1a1854d0";
+      <http://purl.org/dc/terms/creator> <http://lblod.data.gift/services/job-self-service>;
+      <http://purl.org/dc/terms/title> "Cleanup".
+
+    <http://redpencil.data.gift/id/cron-schedule/daea6070-935e-4df8-9de8-724321ad881a>
+      a <http://redpencil.data.gift/vocabularies/tasks/CronSchedule>;
+      <http://schema.org/repeatFrequency> "0 2 * * *";
+      <http://mu.semte.ch/vocabularies/core/uuid> "daea6070-935e-4df8-9de8-724321ad881a".
+
+    <http://redpencil.data.gift/id/scheduled-task/c2de4099-e97d-452a-a22c-dee4475715be>
+      a <http://redpencil.data.gift/vocabularies/tasks/ScheduledTask>;
+      <http://mu.semte.ch/vocabularies/core/uuid> "c2de4099-e97d-452a-a22c-dee4475715be";
+      <http://purl.org/dc/terms/created> "2024-01-26T15:06:01.265Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+      <http://purl.org/dc/terms/modified> "2024-01-26T15:06:01.265Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+      <http://redpencil.data.gift/vocabularies/tasks/operation> <http://lblod.data.gift/id/jobs/concept/TaskOperation/cleaning>;
+      <http://redpencil.data.gift/vocabularies/tasks/index> "0"^^<http://www.w3.org/2001/XMLSchema#integer>;
+      <http://purl.org/dc/terms/isPartOf> <http://redpencil.data.gift/id/scheduled-job/c2ffa700-e462-46b4-abf5-103d1a1854d0>.
+  }
+}

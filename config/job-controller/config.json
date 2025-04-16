@@ -57,5 +57,14 @@
         "nextIndex": "0"
       }
     ]
+  },
+  "http://redpencil.data.gift/id/jobs/concept/JobOperation/cleanup": {
+    "tasksConfiguration": [
+      {
+        "currentOperation": null,
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/cleaning",
+        "nextIndex": "0"
+      }
+    ]
   }
 }
