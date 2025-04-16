@@ -1,11 +1,6 @@
 {
   "operations": [
     "http://lblod.data.gift/id/jobs/concept/TaskOperation/collecting",
-    "http://lblod.data.gift/id/jobs/concept/TaskOperation/add-uuids",
-    "http://lblod.data.gift/id/jobs/concept/TaskOperation/generatingDelta",
-    "http://lblod.data.gift/id/jobs/concept/TaskOperation/publishHarvestedTriples",
-    "http://redpencil.data.gift/id/jobs/concept/TaskOperation/deltas/deltaDumpFileCreation",
-    "http://lblod.data.gift/id/jobs/concept/TaskOperation/diff",
     "http://lblod.data.gift/id/jobs/concept/TaskOperation/importing"
   ]
 }
