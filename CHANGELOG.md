@@ -10,7 +10,7 @@
 **Restarts for clean-up jobs**
 
 ```
-docker compose restart job-controller scheduled-job-controller;
+docker compose restart job-controller scheduled-job-controller migrations;
 drc up -d
 ```
 
