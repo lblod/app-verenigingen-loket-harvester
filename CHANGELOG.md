@@ -1,5 +1,10 @@
 # Changelog
-
+# 1.2.1
+ - fix docker-image-name
+## Deploy instructions
+```
+drc up -d
+```
 # 1.2.0
 
 - Clean-up old files and jobs [CLBV-946]
