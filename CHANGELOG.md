@@ -1,8 +1,10 @@
 # Changelog
 # 1.2.1
  - fix docker-image-name
+ - fix missing properties in `mu-resource`-config
 ## Deploy instructions
 ```
+drc restart resource
 drc up -d
 ```
 # 1.2.0
