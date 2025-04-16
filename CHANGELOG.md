@@ -7,10 +7,19 @@
 - Significant rework of the harvester.
 - Bump virtuoso
 - Re-wire authorization config
+- Clean-up old files and jobs [CLBV-946]
 
 ### Deploy Notes
 
 Since significant changes, we'll go for a full wipe.
+
+**Restarts for clean-up jobs**
+
+```
+docker compose restart job-controller scheduled-job-controller
+```
+
+This is also achieved when fully restarting like below.
 
 ### For dev/qa/production
 
