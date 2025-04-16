@@ -1,17 +1,10 @@
 # Changelog
 
-## Unreleased
+# Unreleased
 
-- Bump `migrations` to `v0.9.0`.
-- Add missing `logging` key to `migrations`. [DL-6490]
-- Significant rework of the harvester.
-- Bump virtuoso
-- Re-wire authorization config
 - Clean-up old files and jobs [CLBV-946]
 
-### Deploy Notes
-
-Since significant changes, we'll go for a full wipe.
+## Deploy instructions
 
 **Restarts for clean-up jobs**
 
@@ -19,7 +12,19 @@ Since significant changes, we'll go for a full wipe.
 docker compose restart job-controller scheduled-job-controller
 ```
 
-This is also achieved when fully restarting like below.
+## 1.1.0
+- Bump `migrations` to `v0.9.0`.
+- Add missing `logging` key to `migrations`. [DL-6490]
+- Significant rework of the harvester.
+- Bump virtuoso
+- Re-wire authorization config
+
+### Deploy Notes
+:warning: If you didn't use `mu-script` to generate an old account, it might not work anymore, because re-write of `mu-auth`.
+Ensure there is a similar triple linked to the account `<http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member accounts:123.`.
+Or you can generate a new account, check instructions `README.md`
+
+Since significant changes, we'll go for a full wipe.
 
 ### For dev/qa/production
 
