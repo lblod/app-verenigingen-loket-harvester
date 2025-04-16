@@ -4,7 +4,8 @@
                 (:created :datetime ,(s-prefix "dct:created"))
                 (:modified :datetime ,(s-prefix "dct:modified"))
                 (:operation :url ,(s-prefix "task:operation"))
-                (:title :string ,(s-prefix "dct:title"))) ;;Later consider using proper relation in domain.lisp 
+                (:title :string ,(s-prefix "dct:title")) ;;Later consider using proper relation in domain.lisp 
+                (:vendor :url ,(s-prefix "prov:wasAssociatedWith")))
 
   :has-one `((cron-schedule :via ,(s-prefix "task:schedule")
                     :as "schedule"))
