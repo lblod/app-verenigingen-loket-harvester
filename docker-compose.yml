@@ -129,7 +129,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_scraper:
-    image: lblod/harvesting-verenigingen-scraper:1.0.3
+    image: lblod/harvesting-verenigingen-scraper:1.1.0
     volumes:
       - ./data/files:/share
       - ./config/harvest_scraper:/config
