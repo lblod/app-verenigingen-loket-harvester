@@ -1,15 +1,17 @@
 # Changelog
 
-# Unreleased
+# 1.2.0
 
 - Clean-up old files and jobs [CLBV-946]
+- Map status to status URI [CLBV-987]
 
 ## Deploy instructions
 
 **Restarts for clean-up jobs**
 
 ```
-docker compose restart job-controller scheduled-job-controller
+docker compose restart job-controller scheduled-job-controller;
+drc up -d
 ```
 
 ## 1.1.0
