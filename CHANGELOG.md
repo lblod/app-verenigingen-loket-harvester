@@ -1,4 +1,8 @@
 # Changelog
+# 1.3.0
+ - Update type vereniging [#13](https://github.com/lblod/app-verenigingen-loket-harvester/pull/13)
+   - [CLBV-891]
+ - Further cleanup
 # 1.2.1
  - fix docker-image-name
  - fix missing properties in `mu-resource`-config
