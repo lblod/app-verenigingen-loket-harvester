@@ -1,16 +1,27 @@
 # Changelog
+
+# 1.3.1
+
+- fix and improved verenigingregister api response handling [#15](https://github.com/lblod/harvesting-verenigingen-scraper-service/pull/15)
+
 # 1.3.0
- - Update type vereniging [#13](https://github.com/lblod/app-verenigingen-loket-harvester/pull/13)
-   - [CLBV-891]
- - Further cleanup
+
+- Update type vereniging [#13](https://github.com/lblod/app-verenigingen-loket-harvester/pull/13)
+  - [CLBV-891]
+- Further cleanup
+
 # 1.2.1
- - fix docker-image-name
- - fix missing properties in `mu-resource`-config
+
+- fix docker-image-name
+- fix missing properties in `mu-resource`-config
+
 ## Deploy instructions
+
 ```
 drc restart resource
 drc up -d
 ```
+
 # 1.2.0
 
 - Clean-up old files and jobs [CLBV-946]
@@ -26,6 +37,7 @@ drc up -d
 ```
 
 ## 1.1.0
+
 - Bump `migrations` to `v0.9.0`.
 - Add missing `logging` key to `migrations`. [DL-6490]
 - Significant rework of the harvester.
@@ -33,6 +45,7 @@ drc up -d
 - Re-wire authorization config
 
 ### Deploy Notes
+
 :warning: If you didn't use `mu-script` to generate an old account, it might not work anymore, because re-write of `mu-auth`.
 Ensure there is a similar triple linked to the account `<http://data.lblod.info/foaf/group/id/25e40ddc-0532-435d-a13f-7a2877cde5a7> foaf:member accounts:123.`.
 Or you can generate a new account, check instructions `README.md`
@@ -83,4 +96,3 @@ drc up -d
 Then follow the steps in the `README.md` to schedule or start a new job.
 Once that job is ready (+/- 20 min), you still need to publish the data.
 Again, follow the steps in the `README.md`, section "Setting up the Delta-Producers"
-
