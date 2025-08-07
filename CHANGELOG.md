@@ -1,4 +1,7 @@
 # Changelog
+# Unreleased
+ - Ensure missing restart directive are set [DL-6508]
+ 
 
 # 1.3.1
 

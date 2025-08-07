@@ -255,3 +255,7 @@ services:
       - ./config/cleaning:/config
     environment:
       MAX_DAYS_TO_KEEP_SUCCESSFUL_JOBS: '14'
+    labels:
+      - "logging=true"
+    restart: always
+    logging: *default-logging
