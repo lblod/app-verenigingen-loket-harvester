@@ -1,7 +1,9 @@
 # Changelog
+
 # Unreleased
- - Ensure missing restart directive are set [DL-6508]
- 
+
+- Extract internal ID [CLBV-1054]
+- Ensure missing restart directive are set [DL-6508]
 
 # 1.3.1
 
