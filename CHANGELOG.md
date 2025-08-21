@@ -3,6 +3,7 @@
 # Unreleased
 
 - Ensure missing restart directive are set [DL-6508]
+- Include export of ETag as `pav:version` on associations [CLBV-1046]
 
 # 1.3.1
 
