@@ -2,8 +2,9 @@
 
 # Unreleased
 
-- Extract internal ID [CLBV-1054]
 - Ensure missing restart directive are set [DL-6508]
+- Extract internal ID [CLBV-1054]
+- Include export of ETag as `pav:version` on associations [CLBV-1046]
 
 # 1.3.1
 

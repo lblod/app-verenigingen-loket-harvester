@@ -27,6 +27,7 @@
         "http://www.w3.org/ns/org#hasMembership",
         "http://purl.org/pav/createdOn",
         "http://purl.org/pav/lastUpdateOn",
+        "http://purl.org/pav/version",
         "https://data.lblod.info/ns/bron",
         "https://data.lblod.info/ns/roepnaam",
         "https://data.lblod.info/ns/isUitgeschrevenUitPubliekeDatastroom",
