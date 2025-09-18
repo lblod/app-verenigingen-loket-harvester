@@ -305,6 +305,7 @@
         "http://mu.semte.ch/vocabularies/core/uuid",
         "https://data.lblod.info/ns/vertegenwoordigerId",
         "http://www.w3.org/ns/org#member",
+        "http://www.w3.org/ns/org#role",
         "http://schema.org/contactPoint"
       ]
     },
