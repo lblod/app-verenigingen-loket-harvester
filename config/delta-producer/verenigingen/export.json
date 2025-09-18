@@ -27,6 +27,7 @@
         "http://www.w3.org/ns/org#hasMembership",
         "http://purl.org/pav/createdOn",
         "http://purl.org/pav/lastUpdateOn",
+        "http://purl.org/pav/version",
         "https://data.lblod.info/ns/bron",
         "https://data.lblod.info/ns/roepnaam",
         "https://data.lblod.info/ns/isUitgeschrevenUitPubliekeDatastroom",
@@ -213,6 +214,7 @@
       ],
       "properties": [
         "http://mu.semte.ch/vocabularies/core/uuid",
+        "https://data.lblod.info/ns/contactgegevenId",
         "http://www.w3.org/2002/07/owl#sameAs",
         "http://www.w3.org/ns/prov#wasGeneratedBy",
         "http://www.w3.org/2006/vcard/ns#honorific-prefix",
@@ -301,7 +303,9 @@
       ],
       "properties": [
         "http://mu.semte.ch/vocabularies/core/uuid",
+        "https://data.lblod.info/ns/vertegenwoordigerId",
         "http://www.w3.org/ns/org#member",
+        "http://www.w3.org/ns/org#role",
         "http://schema.org/contactPoint"
       ]
     },
@@ -325,6 +329,7 @@
       ],
       "properties": [
         "http://mu.semte.ch/vocabularies/core/uuid",
+        "https://data.lblod.info/ns/locatieId",
         "https://data.vlaanderen.be/ns/organisatie#bestaatUit",
         "http://purl.org/dc/terms/description",
         "http://data.lblod.info/vocabularies/erediensten/vestigingstype"
