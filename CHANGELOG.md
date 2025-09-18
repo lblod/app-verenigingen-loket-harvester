@@ -1,10 +1,13 @@
 # Changelog
 
-# Unreleased
+# 1.4.0
 
 - Ensure missing restart directive are set [DL-6508]
 - Extract internal ID [CLBV-1054]
 - Include export of ETag as `pav:version` on associations [CLBV-1046]
+- `isPrimary` contact point [CLBV-1058]
+- Harvest address register uri [CLBV-1065]
+- Add status mapping for 'gestopt' [CLBV-1059]
 
 # 1.3.1
 
