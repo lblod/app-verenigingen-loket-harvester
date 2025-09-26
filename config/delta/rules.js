@@ -167,14 +167,6 @@ export default [
   },
   {
     match: {
-      predicate: {
-        type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
-      },
-      object: {
-        type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
     },
     callback: {
       url: 'http://delta-producer-publication-graph-maintainer/delta',
