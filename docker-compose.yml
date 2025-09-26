@@ -160,7 +160,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: lblod/harvesting-verenigingen-import-service:1.1.0-rc.1
+    image: lblod/harvesting-verenigingen-import-service:1.1.0-rc.2
     environment:
       IMPORT_TARGET_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
     volumes:
