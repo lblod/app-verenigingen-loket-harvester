@@ -11,7 +11,7 @@ export default [
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true // still problems with that
     }
   },
   {
@@ -33,7 +33,7 @@ export default [
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -55,7 +55,7 @@ export default [
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -77,7 +77,7 @@ export default [
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -95,7 +95,7 @@ export default [
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -122,7 +122,7 @@ export default [
       //scheduled task.
       gracePeriod: 10000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -144,7 +144,7 @@ export default [
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -162,7 +162,7 @@ export default [
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -184,7 +184,7 @@ export default [
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -206,7 +206,7 @@ export default [
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -228,7 +228,7 @@ export default [
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -246,7 +246,7 @@ export default [
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -268,7 +268,7 @@ export default [
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
-      foldEffectiveChanges: true
+      // foldEffectiveChanges: true
     }
   }
 ]
