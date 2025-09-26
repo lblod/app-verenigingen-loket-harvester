@@ -9,8 +9,9 @@ export default [
     },
     options: {
       resourceFormat: 'v0.0.1',
-      gracePeriod: 250,
-      ignoreFromSelf: true
+      gracePeriod: 1000,
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true // still problems with that
     }
   },
   {
@@ -31,7 +32,8 @@ export default [
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
-      ignoreFromSelf: true
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -52,7 +54,8 @@ export default [
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
-      ignoreFromSelf: true
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -73,7 +76,8 @@ export default [
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
-      ignoreFromSelf: true
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -90,7 +94,8 @@ export default [
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
-      ignoreFromSelf: true
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -116,7 +121,8 @@ export default [
       //written to the triplestore, failing to encrypt the secrets for the
       //scheduled task.
       gracePeriod: 10000,
-      ignoreFromSelf: true
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -137,7 +143,8 @@ export default [
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
-      ignoreFromSelf: true
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -154,19 +161,12 @@ export default [
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
-      ignoreFromSelf: true
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true
     }
   },
   {
     match: {
-      predicate: {
-        type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
-      },
-      object: {
-        type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
     },
     callback: {
       url: 'http://delta-producer-publication-graph-maintainer/delta',
@@ -175,7 +175,8 @@ export default [
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
-      ignoreFromSelf: true
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -196,7 +197,8 @@ export default [
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
-      ignoreFromSelf: true
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -217,7 +219,8 @@ export default [
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
-      ignoreFromSelf: true
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -234,7 +237,8 @@ export default [
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
-      ignoreFromSelf: true
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true
     }
   },
   {
@@ -255,7 +259,8 @@ export default [
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
-      ignoreFromSelf: true
+      ignoreFromSelf: true,
+      // foldEffectiveChanges: true
     }
   }
 ]

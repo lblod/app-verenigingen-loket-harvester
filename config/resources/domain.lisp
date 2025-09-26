@@ -10,6 +10,11 @@
 (defparameter *max-group-sorted-properties* t)
 (defparameter sparql:*experimental-no-application-graph-for-sudo-select-queries* t)
 
+(defcall :get (base-path)
+  (list-call (find-resource-by-path base-path)))
+(defparameter sparql:*query-log-types* '())
+;;(setf *log-delta-processing-information-p* t)
+
 (read-domain-file "master-harvest-domain.lisp")
 (read-domain-file "master-file-domain.lisp")
 (read-domain-file "master-job-domain.lisp")

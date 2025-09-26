@@ -5,7 +5,7 @@
                 (:size :number ,(s-prefix "nfo:fileSize"))
                 (:extension :string ,(s-prefix "dbpedia:fileExtension"))
                 (:created :datetime ,(s-prefix "nfo:fileCreated")))
-  :has-one `((data-source :via ,(s-prefix "nie:dataSource")
+  :has-one `((file :via ,(s-prefix "nie:dataSource")
                           :as "data-source")
              (data-container :via ,(s-prefix "task:hasFile")
                              :inverse t

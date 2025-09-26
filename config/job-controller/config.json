@@ -1,4 +1,14 @@
 {
+  "http://lblod.data.gift/id/jobs/concept/JobOperation/incrementalCollecting": {
+    "tasksConfiguration": [
+      {
+        "currentOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/mutatieDienstCollecting",
+        "comment": "NextOperation: performed by harvest_importing",
+        "nextOperation": "http://lblod.data.gift/id/jobs/concept/TaskOperation/incrementalImporting",
+        "nextIndex": "1"
+      }
+    ]
+  },
   "http://lblod.data.gift/id/jobs/concept/JobOperation/lblodHarvesting": {
     "tasksConfiguration": [
       {
