@@ -45,6 +45,10 @@ services:
       EMBER_BESLUITEN_HARVESTING_ENABLED: 'true'
       EMBER_WORSHIP_HARVESTING_ENABLED: 'false'
 
+  #  START: IN CASE OF EMERGENCY
+  #  NOTE: if this adds chaos too much (e.g. resource failing)
+  #   you can swap it to mu-auth easily for now.
+  #
   database:
     image: semtech/sparql-parser:0.0.14
     environment:
@@ -57,7 +61,6 @@ services:
       - "logging=true"
     restart: always
     logging: *default-logging
-
   # database:
   #   image: semtech/mu-authorization:0.6.0-beta.8
   #   environment:
@@ -68,6 +71,7 @@ services:
   #     - 'logging=true'
   #   restart: always
   #   logging: *default-logging
+  #  END: IN CASE OF EMERGENCY
   virtuoso:
     image: redpencil/virtuoso:1.3.0-rc.1
     environment:
