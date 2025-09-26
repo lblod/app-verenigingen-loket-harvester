@@ -106,9 +106,11 @@ services:
     logging: *default-logging
 
   resource:
-    image: semtech/mu-cl-resources:1.22.2
+    #image: semtech/mu-cl-resources:1.27.2
+    image: semtech/mu-cl-resources:feature-delta-processing-queue
     environment:
       CACHE_CLEAR_PATH: 'http://cache/.mu/clear-keys'
+      LISP_DYNAMIC_SPACE_SIZE: "4096"
     volumes:
       - ./config/resources:/config
     restart: always
