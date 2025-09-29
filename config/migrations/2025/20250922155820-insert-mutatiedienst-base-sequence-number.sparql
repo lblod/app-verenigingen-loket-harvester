@@ -1,0 +1,6 @@
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/jobs> {
+    <http://data.lblod.info/id/283ea607-7d1d-4301-b4c7-cdd15f50f875>
+      a <http://data.lblod.info/vocabularies/FeitelijkeVerenigingen/MutatiedienstStateInfo>.
+  }
+}
