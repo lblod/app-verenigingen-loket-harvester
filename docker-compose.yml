@@ -150,6 +150,8 @@ services:
       - ./config/harvest_scraper:/config
     environment:
       DEFAULT_GRAPH: 'http://mu.semte.ch/graphs/jobs'
+      MUTATIEDIENST_SYNC_INTERVAL_ACTIVITY_WINDOW: '4-23'
+      MUTATIEDIENST_SYNC_INTERVAL_SECONDS: '*/5'
     labels:
       - 'logging=true'
     restart: always
