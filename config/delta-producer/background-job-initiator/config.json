@@ -7,7 +7,7 @@
     "healingJobOperation": "http://redpencil.data.gift/id/jobs/concept/JobOperation/deltas/healingOperation/verenigingen",
     "cronPatternDumpJob": "0 6 * * *",
     "startInitialSync": false,
-    "cronPatternHealingJob": "0 0 * * *",
+    "cronPatternHealingJob": "20 05 * * *",
     "errorCreatorUri": "http://lblod.data.gift/services/delta-producer-background-jobs-initiator-verenigingen",
     "disableDumpFileCreation": false
   }
