@@ -4,8 +4,70 @@
 
 - mutatiedienst optimizations
 - import service waits for db to be ready during initialization
+- [CLBV-1069] bump virtuoso to 1.3.0 and bump the job controllers to 1.2.x. Make sure to follow the deploy notes below.
 
 ## Deploy notes
+
+### Updgrade virtuoso db
+
+see also the [virtuoso docker image readme](https://github.com/redpencilio/docker-virtuoso/).
+
+NOTE: Upgrading virtuoso is a procedure to be done with great care, make sure to have backups before starting.
+
+#### 1. dump nquads
+
+When upgrading it's recommended (and sometimes required!) to first dump to quads using the `dump_nquads` procedure:
+
+```sh
+docker compose exec virtuoso isql-v
+SQL> dump_nquads ('dumps', 1, 1000000000, 1);
+```
+
+#### 2. stop the db
+
+```sh
+docker compose stop virtuoso
+```
+
+#### 3. remove old db and related files
+
+When this has completed move the dumps folder to the toLoad folder. Make sure to remove the following files:
+
+- `.data_loaded`
+- `.dba_pwd_set`
+- `virtuoso.db`
+- `virtuoso.trx`
+- `virtuoso.pxa`
+- `virtuoso-temp.db`
+
+```sh
+mv data/db/dumps/* data/db/toLoad
+rm data/db/virtuoso.{db,trx,pxa} data/db/virtuoso-temp.db data/db/.data_loaded data/db/.dba_pwd_set
+```
+
+Consider truncating or removing the virtuoso.log file as well.
+
+### 4. update virtuoso version
+
+Check out this branch/release verify to be on expected branch and version.
+
+docker-compose.yml should contain:
+
+```yaml
+virtuoso:
+  image: redpencil/virtuoso:1.3.0
+```
+
+### 5. start the db
+
+Start the DB and monitor the logs, importing the nquads might take a long time .
+
+```sh
+docker compose up -d virtuoso
+docker compose logs -f virtuoso
+```
+
+After that your application can be started again and you should be good to go.
 
 ```
 git checkout config/delta-producer/background-job-initiator/config.json
