@@ -20,6 +20,7 @@
     "useFileDiff": true,
     "healingInitialBatchSizeInsert": 1000,
     "useVirtuosoForExpensiveSelects": true,
+    "updatePublicationGraphSleep": 10,
     "account": "http://data.lblod.info/foaf/account/id/f6f1df05-02c0-48bc-b4ee-774b96e2fb43",
     "key": "shared secret key between consumer and producer"
   }

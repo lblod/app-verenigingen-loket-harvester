@@ -1,5 +1,22 @@
 # Changelog
 
+# Unreleased
+
+- mutatiedienst optimizations
+- import service waits for db to be ready during initialization
+
+## Deploy notes
+
+```
+git checkout config/delta-producer/background-job-initiator/config.json
+# ensure initial sync runs
+sed -i 's/"startInitialSync": false/"startInitialSync": true/' config/delta-producer/background-job-initiator/config.json
+drc stop
+drc up -d
+```
+
+Then, through the frontend, ensure in the scheduled jobs, the harvesjob cron pattern is changed to `30 03 * * *`.
+
 # 1.4.0
 
 - Ensure missing restart directive are set [DL-6508]
