@@ -4,6 +4,8 @@
 
 - mutatiedienst optimizations
 - import service waits for db to be ready during initialization
+- [CLBV-1084] Include metrics for long running harvest jobs.
+
 
 ## Deploy notes
 
