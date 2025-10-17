@@ -19,6 +19,9 @@ drc up -d
 
 Then, through the frontend, ensure in the scheduled jobs, the harvesjob cron pattern is changed to `30 03 * * *`.
 
+### About the metrics [CLBV-1084]
+You'll have to ping Felix or Niels to wire this into the warning system
+
 # 1.4.0
 
 - Ensure missing restart directive are set [DL-6508]
