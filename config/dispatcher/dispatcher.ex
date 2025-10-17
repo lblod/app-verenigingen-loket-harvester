@@ -140,7 +140,7 @@ defmodule Dispatcher do
   # Login
   #############################################################################
 
-  match "/sessions/*path", %{ layer: resources, accept: %{ any: true}} do
+  match "/sessions/*path", %{ layer: :resources, accept: %{ any: true}} do
     Proxy.forward conn, path, "http://login/sessions/"
   end
 
