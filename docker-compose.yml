@@ -129,12 +129,13 @@ services:
     restart: always
     logging: *default-logging
   harvest_scraper:
-    image: lblod/harvesting-verenigingen-scraper-service:2.0.2
+    image: lblod/harvesting-verenigingen-scraper-service:3.1.0
     volumes:
       - ./data/files:/share
       - ./config/harvest_scraper:/config
     environment:
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/jobs"
+      FEATURE_MITIGATE_API_LIMIT_WITH_AND_QUERY: "true"
     labels:
       - "logging=true"
     restart: always
@@ -254,4 +255,4 @@ services:
       - ./data/files:/share
       - ./config/cleaning:/config
     environment:
-      MAX_DAYS_TO_KEEP_SUCCESSFUL_JOBS: '14'
+      MAX_DAYS_TO_KEEP_SUCCESSFUL_JOBS: "14"
