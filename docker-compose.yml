@@ -272,6 +272,7 @@ services:
       - ./config/cleaning:/config
     environment:
       MAX_DAYS_TO_KEEP_SUCCESSFUL_JOBS: '14'
+      DEFAULT_GRAPH: "http://mu.semte.ch/graphs/jobs"
     labels:
       - 'logging=true'
     restart: always
