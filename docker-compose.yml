@@ -49,13 +49,13 @@ services:
   # database:
   #   image: semtech/sparql-parser:0.0.14
   #   environment:
-  #     MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
+  #     MU_SPARQL_ENDPOINT: 'http://virtuoso:8890/sparql'
   #     LISP_DYNAMIC_SPACE_SIZE: 8192
   #   volumes:
   #     - ./config/authorization:/config
   #     - ./data/authorization:/data
   #   labels:
-  #     - "logging=true"
+  #     - 'logging=true'
   #   restart: always
   #   logging: *default-logging
   database:
@@ -144,7 +144,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_scraper:
-    image: lblod/harvesting-verenigingen-scraper-service:3.0.0
+    image: lblod/harvesting-verenigingen-scraper-service:3.2.0
     volumes:
       - ./data/files:/share
       - ./config/harvest_scraper:/config
@@ -152,6 +152,7 @@ services:
       DEFAULT_GRAPH: 'http://mu.semte.ch/graphs/jobs'
       MUTATIEDIENST_SYNC_INTERVAL_ACTIVITY_WINDOW: '4-23'
       MUTATIEDIENST_SYNC_INTERVAL_SECONDS: '*/5'
+      FEATURE_SKIP_UNEXPECTED_RESPONSE_FROM_SOURCE: 'true'
     labels:
       - 'logging=true'
     restart: always
@@ -181,8 +182,8 @@ services:
     environment:
       # NOTE: if the delta-events prove to inaccurate,
       # you can go back to previous behavior by commenting out env.var. below
-      # CRON_HEALING_JOB: "*/5 * * * *"
-      # DISABLE_DELTA: "true"
+      # CRON_HEALING_JOB: '*/5 * * * *'
+      # DISABLE_DELTA: 'true'
       LOG_SPARQL_ALL: 'false'
       DEBUG_AUTH_HEADERS: 'false'
     labels:
@@ -237,7 +238,7 @@ services:
       - ./data/files:/share
     # Temporary disable to no saturate the app-http-logger (should be fixed in a next version)
     #    labels:
-    #      - "logging=true"
+    #      - 'logging=true'
     restart: always
     logging: *default-logging
 
@@ -253,7 +254,7 @@ services:
       - ./data/files/:/share
     # Temporary disable to no saturate the app-http-logger (should be fixed in a next version)
     #    labels:
-    #      - "logging=true"
+    #      - 'logging=true'
     restart: always
     logging: *default-logging
 
