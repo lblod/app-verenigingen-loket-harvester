@@ -152,7 +152,7 @@ services:
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/jobs"
       MUTATIEDIENST_SYNC_INTERVAL_ACTIVITY_WINDOW: "4-23"
       MUTATIEDIENST_SYNC_INTERVAL_SECONDS: "*/5"
-      FEATURE_SKIP_UNEXPECTED_RESPONSE_FROM_SOURCE: true
+      FEATURE_SKIP_UNEXPECTED_RESPONSE_FROM_SOURCE: "true"
     labels:
       - "logging=true"
     restart: always
