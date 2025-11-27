@@ -17,9 +17,9 @@ defmodule Dispatcher do
     |> send_resp( 200, "{ \"message\": \"ok\" }" )
   end
 
-  ###############
+  #############################################################################
   # STATIC
-  ###############
+  #############################################################################
 
   # self-service
   match "/index.html", %{ layer: :static } do
@@ -34,17 +34,17 @@ defmodule Dispatcher do
     forward conn, path, "http://frontend/@appuniversum/"
   end
 
-  ###############
+  #############################################################################
   # SPARQL
-  ###############
+  #############################################################################
+
   match "/sparql", %{ layer: :sparql, accept: %{ sparql: true } } do
     forward conn, [], "http://database:8890/sparql"
   end
 
-
-  #################
+  #############################################################################
   # FRONTEND PAGES
-  #################
+  #############################################################################
 
   # self-service
   match "/*path", %{ layer: :frontend_fallback, accept: %{ html: true } } do
@@ -56,9 +56,10 @@ defmodule Dispatcher do
     send_resp( conn, 404, "" )
   end
 
-  #################################################################
+  #############################################################################
   # lblod-harvester verenigingen sync
-  #################################################################
+  #############################################################################
+
   post "/sync/verenigingen/login/*path" do
     Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/verenigingen/login/"
   end
@@ -67,9 +68,9 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://delta-producer-publication-graph-maintainer/verenigingen/files/"
   end
 
-  ###############
+  #############################################################################
   # RESOURCES
-  ###############
+  #############################################################################
 
   match "/remote-data-objects/*path", %{ layer: :resources, accept: %{ json: true } } do
     Proxy.forward conn, path, "http://resource/remote-data-objects/"
@@ -135,17 +136,26 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/files/"
   end
 
+  #############################################################################
+  # Login
+  #############################################################################
 
-  #################################################################
-  # login
-  #################################################################
-  match "/sessions/*path", %{ layer: resources, accept: %{ any: true}} do
+  match "/sessions/*path", %{ layer: :resources, accept: %{ any: true}} do
     Proxy.forward conn, path, "http://login/sessions/"
   end
 
-  #################################################################
+  #############################################################################
+  # Prometheus reporting
+  #############################################################################
+
+  get "/metrics", %{ layer: :api_services, accept: %{ any: true } } do
+    Proxy.forward conn, [], "http://metrics/metrics"
+  end
+
+  #############################################################################
   # DCAT
-  #################################################################
+  #############################################################################
+
   match "/datasets/*path", %{ layer: :resources, accept: %{ json: true } } do
     Proxy.forward conn, path, "http://cache/datasets/"
   end
@@ -154,9 +164,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/distributions/"
   end
 
-  #################
+  #############################################################################
   # NOT FOUND
-  #################
+  #############################################################################
+
   match "/*_path", %{ layer: :not_found } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
