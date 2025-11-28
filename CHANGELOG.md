@@ -1,5 +1,19 @@
 # Changelog
 
+# 1.5.2
+
+- Bump `harvesting-cleanup-previous-jobs-service`
+
+## Deploy notes
+
+For the `harvesting-cleaning` environment variables: overwrite the
+`MAX_DAYS_TO_KEEP_SUCCESSFUL_JOBS`, `MAX_DAYS_TO_KEEP_BUSY_JOBS`,
+`MAX_DAYS_TO_KEEP_FAILED_JOBS` to your liking and up the service.
+
+```
+drc up -d harvesting-cleaning
+```
+
 # 1.5.1
 
 - mutatiedienst optimizations
