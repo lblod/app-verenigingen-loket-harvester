@@ -267,12 +267,13 @@ services:
     restart: always
     logging: *default-logging
   harvesting-cleaning:
-    image: lblod/harvesting-cleanup-previous-jobs-service:0.2.1
+    image: lblod/harvesting-cleanup-previous-jobs-service:1.0.0
     volumes:
       - ./data/files:/share
       - ./config/cleaning:/config
     environment:
       MAX_DAYS_TO_KEEP_SUCCESSFUL_JOBS: '14'
+      DEFAULT_GRAPH: "http://mu.semte.ch/graphs/jobs"
     labels:
       - 'logging=true'
     restart: always
