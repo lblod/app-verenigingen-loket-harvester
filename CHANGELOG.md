@@ -1,6 +1,6 @@
 # Changelog
 
-# Unreleased
+# 1.5.1
 
 - mutatiedienst optimizations
 - import service waits for db to be ready during initialization
