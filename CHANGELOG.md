@@ -23,6 +23,15 @@ drc up -d harvesting-cleaning
 
 ## Deploy notes
 
+You might want to change these settings in docker-compose.override.yml:
+
+```yaml
+  harvest_scraper:
+    environment:
+      PUBLIC_API_BASE_VERENIGINGENREGISTER: "http://publiek.verenigingen.vlaanderen.be" # if harvesting from production
+      FEATURE_SKIP_UNEXPECTED_RESPONSE_FROM_SOURCE: 'true' # change to false to hard fail again on unexpected responses (502s)
+```
+
 ```
 git checkout config/delta-producer/background-job-initiator/config.json
 # ensure initial sync runs
