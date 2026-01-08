@@ -158,9 +158,10 @@ services:
     restart: always
     logging: *default-logging
   harvest_import:
-    image: lblod/harvesting-verenigingen-import-service:1.1.1
+    image: lblod/harvesting-verenigingen-import-service:1.2.0
     environment:
       IMPORT_TARGET_GRAPH: 'http://mu.semte.ch/graphs/harvesting'
+      FEATURE_ENABLE_MOVE_AUTOCOMMIT: 'true'
     volumes:
       - ./data/files:/share
     labels:
