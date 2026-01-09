@@ -1,0 +1,13 @@
+{
+  "creators": [],
+  "email": {
+    "folder": "http://data.lblod.info/id/mail-folders/2"
+  },
+  "graph": {
+    "email": "http://mu.semte.ch/graphs/system/email",
+    "job": "http://mu.semte.ch/graphs/jobs"
+  },
+  "service": {
+    "uri": "http://lblod.data.gift/services/job-alert-service"
+  }
+}

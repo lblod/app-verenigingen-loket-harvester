@@ -213,6 +213,17 @@ services:
       - 'logging=true'
     restart: always
     logging: *default-logging
+  
+  job-alert:
+    image: lblod/job-alert-service:latest
+    environment:
+      EMAIL_FROM: 'noreply@lblod.info'
+      EMAIL_TO: 'noreply@lblod.info'
+    volumes:
+      - ./config/job-alert:/config/
+    labels:
+      - "logging=true"
+    restart: always
 
   #############################################################################
   # DELTA GENERAL
