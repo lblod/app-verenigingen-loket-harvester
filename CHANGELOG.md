@@ -1,8 +1,20 @@
 # Changelog
 
 # Unreleased
+
 - Bump `lblod/harvesting-verenigingen-import-service` use autocommit for graph move
 - `job-alert-service` creates mails for any failed job
+
+## Deploy notes
+
+Overwrite this configuration in docker-compose.override.yml
+
+```yaml
+  job-alert:
+    environment:
+      EMAIL_FROM: 'noreply@lblod.info'
+      EMAIL_TO: 'noreply@lblod.info'
+```
 
 # 1.5.2
 
@@ -24,16 +36,15 @@ drc up -d harvesting-cleaning
 - import service waits for db to be ready during initialization
 - [CLBV-1084] Include metrics for long running harvest jobs.
 
-
 ## Deploy notes
 
 You might want to change these settings in docker-compose.override.yml:
 
 ```yaml
-  harvest_scraper:
-    environment:
-      PUBLIC_API_BASE_VERENIGINGENREGISTER: "http://publiek.verenigingen.vlaanderen.be" # if harvesting from production
-      FEATURE_SKIP_UNEXPECTED_RESPONSE_FROM_SOURCE: 'true' # change to false to hard fail again on unexpected responses (502s)
+harvest_scraper:
+  environment:
+    PUBLIC_API_BASE_VERENIGINGENREGISTER: 'http://publiek.verenigingen.vlaanderen.be' # if harvesting from production
+    FEATURE_SKIP_UNEXPECTED_RESPONSE_FROM_SOURCE: 'true' # change to false to hard fail again on unexpected responses (502s)
 ```
 
 ```
@@ -47,6 +58,7 @@ drc up -d
 Then, through the frontend, ensure in the scheduled jobs, the harvesjob cron pattern is changed to `30 03 * * *`.
 
 ### About the metrics [CLBV-1084]
+
 You'll have to ping Felix or Niels to wire this into the warning system
 
 # 1.4.0
