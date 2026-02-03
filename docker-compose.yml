@@ -215,7 +215,7 @@ services:
     logging: *default-logging
   
   job-alert:
-    image: lblod/job-alert-service:latest
+    image: lblod/job-alert-service:0.0.4
     environment:
       EMAIL_FROM: 'noreply@lblod.info'
       EMAIL_TO: 'noreply@lblod.info'
