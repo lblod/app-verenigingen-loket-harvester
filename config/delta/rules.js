@@ -1,117 +1,117 @@
 export default [
   {
     match: {
-      subject: {}
+      subject: {},
     },
     callback: {
       url: 'http://resource/.mu/delta',
-      method: 'POST'
+      method: 'POST',
     },
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true // still problems with that
-    }
+    },
   },
   {
     match: {
       predicate: {
         type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
+        value: 'http://www.w3.org/ns/adms#status',
       },
       object: {
         type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
+        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled',
+      },
     },
     callback: {
       method: 'POST',
-      url: 'http://harvest_singleton-job/delta'
+      url: 'http://harvest_singleton-job/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true
-    }
+    },
   },
   {
     match: {
       predicate: {
         type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
+        value: 'http://www.w3.org/ns/adms#status',
       },
       object: {
         type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
+        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled',
+      },
     },
     callback: {
       method: 'POST',
-      url: 'http://harvest_scraper/delta'
+      url: 'http://harvest_scraper/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true
-    }
+    },
   },
   {
     match: {
       predicate: {
         type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
+        value: 'http://www.w3.org/ns/adms#status',
       },
       object: {
         type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
+        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled',
+      },
     },
     callback: {
       method: 'POST',
-      url: 'http://harvest_import/delta'
+      url: 'http://harvest_import/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true
-    }
+    },
   },
   {
     match: {
       predicate: {
         type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
-      }
+        value: 'http://www.w3.org/ns/adms#status',
+      },
     },
     callback: {
       method: 'POST',
-      url: 'http://job-controller/delta'
+      url: 'http://job-controller/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true
-    }
+    },
   },
   {
     match: {
       predicate: {
         type: 'uri',
-        value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+        value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
       },
       object: {
         type: 'uri',
-        value: 'http://vocab.deri.ie/cogs#ScheduledJob'
-      }
+        value: 'http://vocab.deri.ie/cogs#ScheduledJob',
+      },
     },
     callback: {
       method: 'POST',
-      url: 'http://scheduled-job-controller/delta'
+      url: 'http://scheduled-job-controller/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
@@ -123,144 +123,164 @@ export default [
       gracePeriod: 10000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true
-    }
+    },
   },
   {
     match: {
       predicate: {
         type: 'uri',
-        value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+        value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
       },
       object: {
         type: 'uri',
-        value: 'http://redpencil.data.gift/vocabularies/deltas/Error'
-      }
+        value: 'http://redpencil.data.gift/vocabularies/deltas/Error',
+      },
     },
     callback: {
       url: 'http://delta-producer-report-generator/delta',
-      method: 'POST'
+      method: 'POST',
     },
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true
-    }
+    },
   },
   {
     match: {
       predicate: {
         type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
-      }
+        value: 'http://www.w3.org/ns/adms#status',
+      },
     },
     callback: {
       url: 'http://delta-producer-report-generator/delta',
-      method: 'POST'
+      method: 'POST',
     },
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true
-    }
+    },
   },
   {
-    match: {
-    },
+    match: {},
     callback: {
       url: 'http://delta-producer-publication-graph-maintainer/delta',
-      method: 'POST'
+      method: 'POST',
     },
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true
-    }
+    },
   },
   {
     match: {
       predicate: {
         type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
+        value: 'http://www.w3.org/ns/adms#status',
       },
       object: {
         type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
+        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled',
+      },
     },
     callback: {
       url: 'http://delta-producer-dump-file-publisher/delta',
-      method: 'POST'
+      method: 'POST',
     },
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true
-    }
+    },
   },
   {
     match: {
       predicate: {
         type: 'uri',
-        value: 'http://www.w3.org/ns/adms#status'
+        value: 'http://www.w3.org/ns/adms#status',
       },
       object: {
         type: 'uri',
-        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled'
-      }
+        value: 'http://redpencil.data.gift/id/concept/JobStatus/scheduled',
+      },
     },
     callback: {
       method: 'POST',
-      url: 'http://harvesting-cleaning/delta'
+      url: 'http://harvesting-cleaning/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true
-    }
+    },
   },
   {
     match: {
       predicate: {
         type: 'uri',
-        value: 'http://schema.org/repeatFrequency'
-      }
+        value: 'http://schema.org/repeatFrequency',
+      },
     },
     callback: {
       method: 'POST',
-      url: 'http://scheduled-job-controller/delta'
+      url: 'http://scheduled-job-controller/delta',
     },
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true
-    }
+    },
   },
   {
     match: {
       predicate: {
         type: 'uri',
-        value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+        value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
       },
       object: {
         type: 'uri',
-        value: 'http://open-services.net/ns/core#Error'
-      }
+        value: 'http://open-services.net/ns/core#Error',
+      },
     },
     callback: {
       url: 'http://error-alert/delta',
-      method: 'POST'
+      method: 'POST',
     },
     options: {
       resourceFormat: 'v0.0.1',
       gracePeriod: 1000,
       ignoreFromSelf: true,
       // foldEffectiveChanges: true
-    }
-  }
-]
+    },
+  },
+  {
+    match: {
+      predicate: {
+        type: 'uri',
+        value: 'http://www.w3.org/ns/adms#status',
+      },
+      object: {
+        type: 'uri',
+        value: 'http://redpencil.data.gift/id/concept/JobStatus/failed',
+      },
+    },
+    callback: {
+      url: 'http://job-alert/delta',
+      method: 'POST',
+    },
+    options: {
+      resourceFormat: 'v0.0.1',
+      gracePeriod: 1000,
+      ignoreFromSelf: true,
+    },
+  },
+];
