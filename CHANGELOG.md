@@ -1,6 +1,6 @@
 # Changelog
 
-# Unreleased
+# 1.6.0
 
 - Bump `lblod/harvesting-verenigingen-import-service` use autocommit for graph move
 - `job-alert-service` creates mails for any failed job
