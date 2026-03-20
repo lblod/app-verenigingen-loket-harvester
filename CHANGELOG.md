@@ -1,5 +1,21 @@
 # Changelog
 
+# 1.7.0
+
+- Bump `lblod/job-alert-service` to 0.0.5: adds per-creator rate limiting to prevent email flooding when jobs fail repeatedly
+
+## Deploy notes
+
+Optionally overwrite the rate limit configuration in docker-compose.override.yml:
+
+```yaml
+  job-alert:
+    environment:
+      RATE_LIMIT_ENABLED: 'true'
+      RATE_LIMIT_MAX: '3'
+      RATE_LIMIT_WINDOW_HOURS: '1'
+```
+
 # 1.6.0
 
 - Bump `lblod/harvesting-verenigingen-import-service` use autocommit for graph move
