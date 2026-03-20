@@ -215,10 +215,13 @@ services:
     logging: *default-logging
   
   job-alert:
-    image: lblod/job-alert-service:0.0.4
+    image: lblod/job-alert-service:0.0.5
     environment:
       EMAIL_FROM: 'noreply@lblod.info'
       EMAIL_TO: 'noreply@lblod.info'
+      RATE_LIMIT_ENABLED: 'true'
+      RATE_LIMIT_MAX: '3'
+      RATE_LIMIT_WINDOW_HOURS: '1'
     volumes:
       - ./config/job-alert:/config/
     labels:
