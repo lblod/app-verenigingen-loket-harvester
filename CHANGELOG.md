@@ -1,6 +1,6 @@
 # Changelog
 
-# Unreleased
+# 1.8.0
 - Switch to verenigingenregister API v2 [CLBV-1189]
 
 ## Deploy notes
