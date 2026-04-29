@@ -144,7 +144,7 @@ services:
     restart: always
     logging: *default-logging
   harvest_scraper:
-    image: lblod/harvesting-verenigingen-scraper-service:3.2.0
+    image: lblod/harvesting-verenigingen-scraper-service:4.0.0
     volumes:
       - ./data/files:/share
       - ./config/harvest_scraper:/config
@@ -213,7 +213,7 @@ services:
       - 'logging=true'
     restart: always
     logging: *default-logging
-  
+
   job-alert:
     image: lblod/job-alert-service:0.0.5
     environment:

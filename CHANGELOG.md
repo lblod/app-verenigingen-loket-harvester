@@ -1,5 +1,18 @@
 # Changelog
 
+# 1.8.0
+- Switch to verenigingenregister API v2 [CLBV-1189]
+
+## Deploy notes
+Both app-verenigingen-loket-harvester and app-verenigingen-loket `feature/vzer` (TODO: replace with release tag) need to be deploted together and requires a full harvest to be done, so best to do this after business hours.
+
+- check out app-verenigingen-loket
+- run app-verenigingen-loket migrations
+- `drc up -d` for app-verenigingen-loket-harvester
+- trigger a full harvest (or wait for the scheduled nightly full harvest to run)
+- `drc up -d` for app-verenigingen-loket
+
+
 # 1.7.0
 
 - Bump `lblod/job-alert-service` to 0.0.5: adds per-creator rate limiting to prevent email flooding when jobs fail repeatedly
