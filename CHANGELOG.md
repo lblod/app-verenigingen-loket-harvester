@@ -1,4 +1,6 @@
 # Changelog
+# Unreleased
+- removed key authentication [CLBV-1199]
 
 # 1.8.0
 - Switch to verenigingenregister API v2 [CLBV-1189]
