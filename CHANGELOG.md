@@ -1,6 +1,36 @@
 # Changelog
 # Unreleased
 - removed key authentication [CLBV-1199]
+- Bump virtuoso to 1.4.0, job-controller to 1.4.0, scheduled-job-controller to 1.3.0 [CLBV-1069]
+
+## Deploy notes
+
+```
+# stop everything except virtuoso
+drc stop $(drc ps --services --status running | grep -vx virtuoso)
+
+# dump nquads on the old virtuoso (procedure load is idempotent)
+drc exec -T virtuoso sh -c 'isql-v < /docker-virtuoso/dump_nquads_procedure.sql'
+drc exec -T virtuoso isql-v exec="dump_nquads ('dumps', 1, 1000000000, 1);"
+zcat data/db/dumps/*.nq.gz | wc -l    # keep this count
+
+# back up the old db files, stage the dump in toLoad
+drc stop virtuoso
+mkdir -p data/db-backup-7.2.13 data/db/toLoad
+mv data/db/virtuoso.db data/db/virtuoso.trx data/db/virtuoso.pxa data/db/virtuoso-temp.db \
+   data/db/virtuoso.log data/db/.dba_pwd_set data/db-backup-7.2.13/
+rm -f data/db/.data_loaded
+mv data/db/dumps/*.nq.gz data/db/toLoad/
+
+# start the new virtuoso; import is done once data/db/.data_loaded exists
+drc pull virtuoso && drc up -d virtuoso && drc logs -f virtuoso
+
+# verify the count (>= dump count, surplus is virtuoso-internal), then start the stack
+drc exec -T virtuoso isql-v exec="sparql select (count(*) as ?c) where { graph ?g { ?s ?p ?o } filter(?g != <http://www.openlinksw.com/schemas/virtrdf#>) };"
+drc pull && drc up -d
+```
+
+Once verified, remove `data/db-backup-7.2.13/` and `data/db/toLoad/*.nq.gz`.
 
 # 1.8.0
 - Switch to verenigingenregister API v2 [CLBV-1189]
