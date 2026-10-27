@@ -57,7 +57,7 @@ During its initial run, each producer performs a sync operation, which publishes
 
 Check `./config/delta-producer/background-job-initiator/config.json` for the exact timings of the healing job.
 
-The reason why we do not provide live streaming is due to performance considerations. This has led us to skip `mu-authorization` and update Virtuoso directly.
+The reason why we do not provide live streaming is due to performance considerations. This has led us to skip the `database` service (sparql-parser) and update Virtuoso directly.
 
 ### Setting up Producer Verenigingen
 
@@ -141,28 +141,27 @@ Afterwards, make sure to restart the migration service to execute the migration:
 docker compose restart migrations
 ```
 
-If you wish to run this application without authentication, this is also possible. You'll need to make the following changes:
+If you wish to run this application without authentication, this is also possible. Drop the `:query` of the `authenticated` group in the sparql-parser config, so that every request belongs to it, and disable the login screen in the frontend:
 
 ```diff
-# config/authorization/config.ex
-       %GroupSpec{
-         name: "harvesting",
-         useage: [:write, :read_for_write, :read],
--        access: logged_in_user(),
-+        access: %AlwaysAccessible{},
+# config/authorization/config.lisp
+-(supply-allowed-group "authenticated"
+-  :parameters ()
+-  :query "PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+-        ...
+-        }")
++(supply-allowed-group "authenticated")
 ```
 
 ```diff
 # docker-compose.yml
-  identifier:
-    environment:
--      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: '[{"variables":[],"name":"public"},{"variables":[],"name":"clean"}]'
-+      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: '[{"variables":[],"name":"public"},{"variables":[],"name":"harvesting"},{"variables":[],"name":"clean"}]'
   frontend:
     environment:
 -     EMBER_AUTHENTICATION_ENABLED: "true"
 +     EMBER_AUTHENTICATION_ENABLED: "false"
 ```
+
+Restart `database` (and `frontend`) afterwards.
 
 ### Triggering the Healing Job Manually
 

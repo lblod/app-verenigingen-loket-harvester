@@ -2,6 +2,7 @@
 # Unreleased
 - removed key authentication [CLBV-1199]
 - Bump virtuoso to 1.4.0, job-controller to 1.4.0, scheduled-job-controller to 1.3.0 [CLBV-1069]
+- Replace mu-authorization by sparql-parser [DL-7087]
 
 ## Deploy notes
 
@@ -31,6 +32,27 @@ drc pull && drc up -d
 ```
 
 Once verified, remove `data/db-backup-7.2.13/` and `data/db/toLoad/*.nq.gz`.
+
+The final `drc up -d` also replaces mu-authorization by sparql-parser (`database`), no data migration needed. Make sure `docker-compose.override.yml` has no `database:` block left. Then check:
+
+```
+drc logs database        # no "Warning, triples will not be written" / UNWRITTEN-DATA-ERROR
+```
+
+- log in to the frontend and open a scheduled job (its authentication configuration must be readable)
+- wait for an incremental sync and the nightly harvest to end in success
+
+Rollback to mu-authorization, if needed, without touching virtuoso:
+
+```
+git checkout v1.8.1 -- config/authorization/config.ex config/authorization/delta.ex
+# docker-compose.override.yml:
+#   database:
+#     image: semtech/mu-authorization:0.6.0-beta.8
+#     environment:
+#       MU_SPARQL_ENDPOINT: 'http://virtuoso:8890/sparql'
+drc up -d database
+```
 
 # 1.8.0
 - Switch to verenigingenregister API v2 [CLBV-1189]

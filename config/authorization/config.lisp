@@ -15,6 +15,14 @@
 (in-package :server)
 (setf *log-incoming-requests-p* nil)
 
+;; Keep long literals (> 4096 chars) in the triplestore instead of moving them
+;; to files under /data/strings with an abbreviation URI in their place.
+;; The harvesting graph is also written (nightly full harvest) and read
+;; (publication graph healing, dumps) directly on virtuoso, bypassing this
+;; service, so every reader must find the literal itself.
+(in-package :support)
+(setf *string-max-size* nil)
+
 ;;;;;;;;;;;;;;;;
 ;;; access rights
 
@@ -45,7 +53,15 @@
   ("http://open-services.net/ns/core#Error" -> _)
   ("http://lblod.data.gift/vocabularies/harvesting/HarvestingCollection" -> _)
   ("http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#DataContainer" -> _)
-  ("http://www.w3.org/ns/dcat#Catalog" -> _))
+  ("http://oscaf.sourceforge.net/ndo.html#DownloadEvent" -> _)
+  ("http://www.w3.org/ns/dcat#Catalog" -> _)
+  ("http://lblod.data.gift/vocabularies/security/AuthenticationConfiguration" -> _)
+  ("http://lblod.data.gift/vocabularies/security/Credentials" -> _)
+  ("http://lblod.data.gift/vocabularies/security/BasicAuthenticationCredentials" -> _)
+  ("http://lblod.data.gift/vocabularies/security/OAuth2Credentials" -> _)
+  ("https://www.w3.org/2019/wot/security#SecurityScheme" -> _)
+  ("https://www.w3.org/2019/wot/security#BasicSecurityScheme" -> _)
+  ("https://www.w3.org/2019/wot/security#OAuth2SecurityScheme" -> _))
 
 (supply-allowed-group "authenticated"
   :parameters ()
