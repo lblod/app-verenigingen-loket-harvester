@@ -1,5 +1,28 @@
 # Changelog
 
+# Unreleased
+- Fix long running job metrics, add job age and last refresh metrics [CLBV-1314]
+
+## Deploy notes
+
+```
+drc restart metrics
+```
+
+The two `..._running_longer_than_...` gauges used to count every busy job, whatever its age. They now match their name, so the full harvest one is 1 for a few minutes on a normal night. Alert on the age gauge instead, on the monitoring stack:
+
+```yaml
+- alert: JobHanging
+  expr: job_oldest_unfinished_age_seconds > 3 * 3600
+  for: 5m
+- alert: IncrementalHarvestHanging
+  expr: job_oldest_unfinished_age_seconds{operation="incrementalCollecting"} > 1800
+  for: 5m
+- alert: JobMetricsStale
+  expr: time() - job_metrics_last_refresh_timestamp_seconds > 600
+  for: 5m
+```
+
 # 1.8.0
 - Switch to verenigingenregister API v2 [CLBV-1189]
 
